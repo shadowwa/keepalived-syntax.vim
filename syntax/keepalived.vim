@@ -1,7 +1,7 @@
 " Vim syntax file
 " Language:     keepalived config http://www.keepalived.org/
 " URL:          https://github.com/shadowwa/keepalived-syntax.vim
-" Version:      2.0.13
+" Version:      2.0.14
 " Author:       Akira Maeda <glidenote@gmail.com>
 " Maintainer:   Shad
 
@@ -169,6 +169,7 @@ syn keyword keepalivedglobal_defsKeyword                    vrrp_rt_priority  co
 syn keyword keepalivedglobal_defsKeyword             vrrp_rx_bufs_multiplier  contained
 syn keyword keepalivedglobal_defsKeyword                 vrrp_rx_bufs_policy  contained
 syn keyword keepalivedglobal_defsKeyword            vrrp_skip_check_adv_addr  contained
+syn keyword keepalivedglobal_defsKeyword                  vrrp_startup_delay  contained
 syn keyword keepalivedglobal_defsKeyword                         vrrp_strict  contained
 syn keyword keepalivedglobal_defsKeyword                        vrrp_version  contained
 highlight link keepalivedglobal_defsDefinition  Statement
