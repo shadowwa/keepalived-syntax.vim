@@ -1,7 +1,7 @@
 " Vim syntax file
 " Language:     keepalived config http://www.keepalived.org/
 " URL:          https://github.com/shadowwa/keepalived-syntax.vim
-" Version:      2.2.3
+" Version:      2.2.5
 " Author:       Akira Maeda <glidenote@gmail.com>
 " Maintainer:   Shad
 
@@ -22,7 +22,7 @@ syn match   keepalivedNumber      "[-+]\=\<\d\+\(\.\d*\)\=\>"
 syn region  keepalivedString      start=+"+ skip=+\\"+ end=+"+
 
 syn keyword keepalivedBoolean on off true false yes no
-syn keyword keepalivedLvsSched rr wrr lc wlc lblc sh mh dh fo ovf lblcr sed nq containedin=keepalivedvirtual_serverBlock
+syn keyword keepalivedLvsSched rr wrr lc wlc lblc sh mh dh fo ovf lblcr sed nq twos containedin=keepalivedvirtual_serverBlock
 syn keyword keepalivedStatus MASTER BACKUP containedin=keepalivedvrrp_instanceBlock
 syn keyword keepalivedProto TCP SCTP UDP containedin=keepalivedvirtual_serverBlock
 syn keyword keepalivedMethod NAT DR TUN containedin=keepalivedvirtual_serverBlock
@@ -117,6 +117,7 @@ syn keyword keepalivedglobal_defsKeyword                   enable_snmp_rfcv2  co
 syn keyword keepalivedglobal_defsKeyword                   enable_snmp_rfcv3  contained
 syn keyword keepalivedglobal_defsKeyword                    enable_snmp_vrrp  contained
 syn keyword keepalivedglobal_defsKeyword                        enable_traps  contained
+syn keyword keepalivedglobal_defsKeyword    fifo_write_vrrp_states_on_reload  contained
 syn keyword keepalivedglobal_defsKeyword                       include_check  contained
 syn keyword keepalivedglobal_defsKeyword                   log_unknown_vrids  contained
 syn keyword keepalivedglobal_defsKeyword                           lvs_flush  contained
@@ -348,6 +349,7 @@ syn keyword keepalivedvrrp_instanceKeyword                  kernel_rx_buf_size  
 syn keyword keepalivedvrrp_instanceKeyword                linkbeat_use_polling  contained
 syn keyword keepalivedvrrp_instanceKeyword                lower_prio_no_advert  contained
 syn keyword keepalivedvrrp_instanceKeyword           lvs_sync_daemon_interface  contained
+syn keyword keepalivedvrrp_instanceKeyword                        mcast_dst_ip  contained
 syn keyword keepalivedvrrp_instanceKeyword                        mcast_src_ip  contained
 syn keyword keepalivedvrrp_instanceKeyword                         native_ipv6  contained
 syn keyword keepalivedvrrp_instanceKeyword                           no_accept  contained
@@ -375,6 +377,7 @@ syn keyword keepalivedvrrp_instanceKeyword                     track_interface  
 syn keyword keepalivedvrrp_instanceKeyword                       track_process  contained
 syn keyword keepalivedvrrp_instanceKeyword                        track_script  contained
 syn keyword keepalivedvrrp_instanceKeyword                        track_src_ip  contained
+syn keyword keepalivedvrrp_instanceKeyword               unicast_fault_no_peer  contained
 syn keyword keepalivedvrrp_instanceKeyword                        unicast_peer  contained
 syn keyword keepalivedvrrp_instanceKeyword                      unicast_src_ip  contained
 syn keyword keepalivedvrrp_instanceKeyword                         unicast_ttl  contained
@@ -389,6 +392,7 @@ syn keyword keepalivedvrrp_instanceKeyword                      virtual_routes  
 syn keyword keepalivedvrrp_instanceKeyword                       virtual_rules  contained
 syn keyword keepalivedvrrp_instanceKeyword                     vmac_garp_intvl  contained
 syn keyword keepalivedvrrp_instanceKeyword                      vmac_xmit_base  contained
+syn keyword keepalivedvrrp_instanceKeyword                                 vrf  contained
 highlight link keepalivedvrrp_instanceDefinition  Statement
 highlight link keepalivedvrrp_instanceKeyword       Type
 
