@@ -14,7 +14,7 @@ setlocal iskeyword+=:
 
 syn match   keepalivedDelimiter   "[{}()\[\];,]"
 syn match   keepalivedOperator    "[~!=|&\*\+\<\>]"
-syn match   keepalivedComment     "\(#.*\)"
+syn match   keepalivedComment     "\([#!].*\)"
 syn match   keepalivedNumber      "[-+]\=\<\d\+\(\.\d*\)\=\>"
 syn region  keepalivedString      start=+"+ skip=+\\"+ end=+"+
 syn region  keepalivedBlock start=+^+ end=+{+ contains=keepalivedComment,keepalivedDefinitionBlock,keepalivedDefinitionImportant,keepalivedDefinition oneline
