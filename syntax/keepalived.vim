@@ -1,7 +1,7 @@
 " Vim syntax file
 " Language:     keepalived config http://www.keepalived.org/
 " URL:          https://github.com/shadowwa/keepalived-syntax.vim
-" Version:      2.2.2
+" Version:      2.2.3
 " Author:       Akira Maeda <glidenote@gmail.com>
 " Maintainer:   Shad
 
@@ -102,6 +102,8 @@ syn keyword keepalivedglobal_defsKeyword                checker_process_name  co
 syn keyword keepalivedglobal_defsKeyword                checker_rlimit_rtime  contained
 syn keyword keepalivedglobal_defsKeyword               checker_rlimit_rttime  contained
 syn keyword keepalivedglobal_defsKeyword                 checker_rt_priority  contained
+syn keyword keepalivedglobal_defsKeyword                     config_save_dir  contained
+syn keyword keepalivedglobal_defsKeyword                   data_use_instance  contained
 syn keyword keepalivedglobal_defsKeyword                   dbus_service_name  contained
 syn keyword keepalivedglobal_defsKeyword                   default_interface  contained
 syn keyword keepalivedglobal_defsKeyword                  disable_local_igmp  contained
@@ -173,6 +175,8 @@ syn keyword keepalivedglobal_defsKeyword                    vmac_addr_prefix  co
 syn keyword keepalivedglobal_defsKeyword                         vmac_prefix  contained
 syn keyword keepalivedglobal_defsKeyword              vrrp_check_unicast_src  contained
 syn keyword keepalivedglobal_defsKeyword                   vrrp_cpu_affinity  contained
+syn keyword keepalivedglobal_defsKeyword             vrrp_down_timer_adverts  contained
+syn keyword keepalivedglobal_defsKeyword                  vrrp_garp_extra_if  contained
 syn keyword keepalivedglobal_defsKeyword                  vrrp_garp_interval  contained
 syn keyword keepalivedglobal_defsKeyword          vrrp_garp_lower_prio_delay  contained
 syn keyword keepalivedglobal_defsKeyword         vrrp_garp_lower_prio_repeat  contained
@@ -212,6 +216,7 @@ highlight link keepalivedglobal_defsDefinition  Statement
 highlight link keepalivedglobal_defsKeyword       Type
 
 syn keyword keepalivedrootKeyword                            instance           
+syn keyword keepalivedrootKeyword            interface_up_down_delays           
 syn keyword keepalivedrootKeyword                 linkbeat_interfaces           
 syn keyword keepalivedrootKeyword                linkbeat_use_polling           
 syn keyword keepalivedrootKeyword               namespace_with_ipsets           
@@ -286,6 +291,7 @@ syn keyword keepalivedreal_serverKeyword                         notify_down  co
 syn keyword keepalivedreal_serverKeyword                           notify_up  contained
 syn keyword keepalivedreal_serverKeyword                               retry  contained
 syn keyword keepalivedreal_serverKeyword                          smtp_alert  contained
+syn keyword keepalivedreal_serverKeyword                           snmp_name  contained
 syn keyword keepalivedreal_serverKeyword                          uthreshold  contained
 syn keyword keepalivedreal_serverKeyword                         virtualhost  contained
 syn keyword keepalivedreal_serverKeyword                              warmup  contained
@@ -297,6 +303,7 @@ syn keyword keepalivedvirtual_serverKeyword                               retry 
 syn keyword keepalivedvirtual_serverKeyword                         sh-fallback  contained
 syn keyword keepalivedvirtual_serverKeyword                             sh-port  contained
 syn keyword keepalivedvirtual_serverKeyword                          smtp_alert  contained
+syn keyword keepalivedvirtual_serverKeyword                           snmp_name  contained
 syn keyword keepalivedvirtual_serverKeyword                        sorry_server  contained
 syn keyword keepalivedvirtual_serverKeyword                sorry_server_inhibit  contained
 syn keyword keepalivedvirtual_serverKeyword             sorry_server_lvs_method  contained
@@ -327,6 +334,8 @@ highlight link keepalivedauthenticationKeyword       Type
 syn keyword keepalivedvrrp_instanceKeyword                   check_unicast_src  contained
 syn keyword keepalivedvrrp_instanceKeyword                               debug  contained
 syn keyword keepalivedvrrp_instanceKeyword                  dont_track_primary  contained
+syn keyword keepalivedvrrp_instanceKeyword                  down_timer_adverts  contained
+syn keyword keepalivedvrrp_instanceKeyword                       garp_extra_if  contained
 syn keyword keepalivedvrrp_instanceKeyword               garp_lower_prio_delay  contained
 syn keyword keepalivedvrrp_instanceKeyword              garp_lower_prio_repeat  contained
 syn keyword keepalivedvrrp_instanceKeyword                   garp_master_delay  contained
