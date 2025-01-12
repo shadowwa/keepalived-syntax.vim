@@ -1,7 +1,7 @@
 " Vim syntax file
 " Language:     keepalived config http://www.keepalived.org/
 " URL:          https://github.com/shadowwa/keepalived-syntax.vim
-" Version:      1.2.14
+" Version:      1.2.17
 " Author:       Akira Maeda <glidenote@gmail.com>
 " Maintainer:   Shad
 
@@ -145,6 +145,7 @@ syn region keepalivedvrrp_instanceBlock start="\s*vrrp_instance\ze\s*\w*\s*{" ma
 syn keyword keepalivedvrrp_instanceDefinition                  vrrp_instance contained containedin=keepalivedvrrp_instanceBlock
 
 " vrrp_instance
+syn keyword keepalivedvrrp_instanceKeyword                              accept  contained
 syn keyword keepalivedvrrp_instanceKeyword                          advert_int  contained
 
 syn region keepalivedauthenticationBlock start="\s*authentication\ze\s*{" matchgroup=keepalivedDelimiter end="\zs}" contains=keepalivedDelimiter,keepalivedauthenticationKeyword,keepalivedauthenticationDefinition,keepalivedOperator,keepalivedComment,keepalivedNumber,keepalivedString,keepalivedBoolean,ipaddress,ipaddr_cidr,keepalivedGenericBlock contained containedin=keepalivedvrrp_instanceBlock
@@ -182,6 +183,7 @@ syn keyword keepalivedvrrp_instanceKeyword                        track_script  
 syn keyword keepalivedvrrp_instanceKeyword                        unicast_peer  contained
 syn keyword keepalivedvrrp_instanceKeyword                      unicast_src_ip  contained
 syn keyword keepalivedvrrp_instanceKeyword                            use_vmac  contained
+syn keyword keepalivedvrrp_instanceKeyword                             version  contained
 syn keyword keepalivedvrrp_instanceKeyword                   virtual_ipaddress  contained
 syn keyword keepalivedvrrp_instanceKeyword          virtual_ipaddress_excluded  contained
 syn keyword keepalivedvrrp_instanceKeyword                   virtual_router_id  contained
@@ -235,11 +237,10 @@ highlight link keepalivedMISC_CHECKKeyword Identifier
 
 
 
-syn region keepalivedSMTP_CHECKBlock start="\s*SMTP_CHECK\ze\s*{" matchgroup=keepalivedDelimiter end="\zs}" contains=keepalivedDelimiter,keepalivedSMTP_CHECKKeyword,keepalivedSMTP_CHECKDefinition,keepalivedOperator,keepalivedComment,keepalivedNumber,keepalivedString,keepalivedBoolean,ipaddress,ipaddr_cidr,keepalivedGenericBlock contained containedin=keepalivedreal_serverBlock
+syn region keepalivedSMTP_CHECKBlock start="\s*SMTP_CHECK\ze\s*{" matchgroup=keepalivedDelimiter end="\zs}" contains=keepalivedDelimiter,keepalivedSMTP_CHECKKeyword,keepalivedSMTP_CHECKDefinition,keepalivedOperator,keepalivedComment,keepalivedNumber,keepalivedString,keepalivedBoolean,ipaddress,ipaddr_cidr,keepalivedGenericBlock,keepalivedCommonCheckerKeyword contained containedin=keepalivedreal_serverBlock
 syn keyword keepalivedSMTP_CHECKDefinition                     SMTP_CHECK contained containedin=keepalivedSMTP_CHECKBlock
 
 " SMTP_CHECK
-syn keyword keepalivedSMTP_CHECKKeyword                     connect_timeout  contained
 syn keyword keepalivedSMTP_CHECKKeyword                  delay_before_retry  contained
 syn keyword keepalivedSMTP_CHECKKeyword                           helo_name  contained
 
