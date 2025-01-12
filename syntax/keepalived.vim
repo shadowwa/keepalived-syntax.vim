@@ -1,7 +1,7 @@
 " Vim syntax file
 " Language:     keepalived config http://www.keepalived.org/
 " URL:          https://github.com/shadowwa/keepalived-syntax.vim
-" Version:      1.2.10
+" Version:      1.2.13
 " Author:       Akira Maeda <glidenote@gmail.com>
 " Maintainer:   Shad
 
@@ -134,6 +134,7 @@ highlight link keepalivedreal_serverDefinition  Statement
 highlight link keepalivedreal_serverKeyword       Type
 
 syn keyword keepalivedvirtual_serverKeyword                        sorry_server  contained
+syn keyword keepalivedvirtual_serverKeyword                sorry_server_inhibit  contained
 syn keyword keepalivedvirtual_serverKeyword                         virtualhost  contained
 highlight link keepalivedvirtual_serverDefinition  Statement
 highlight link keepalivedvirtual_serverKeyword       Type
@@ -226,6 +227,7 @@ syn keyword keepalivedMISC_CHECKDefinition                     MISC_CHECK contai
 syn keyword keepalivedMISC_CHECKKeyword                        misc_dynamic  contained
 syn keyword keepalivedMISC_CHECKKeyword                           misc_path  contained
 syn keyword keepalivedMISC_CHECKKeyword                        misc_timeout  contained
+syn keyword keepalivedMISC_CHECKKeyword                              warmup  contained
 highlight link keepalivedMISC_CHECKDefinition Identifier
 highlight link keepalivedMISC_CHECKKeyword Identifier
 
@@ -239,41 +241,34 @@ syn keyword keepalivedSMTP_CHECKKeyword                     connect_timeout  con
 syn keyword keepalivedSMTP_CHECKKeyword                  delay_before_retry  contained
 syn keyword keepalivedSMTP_CHECKKeyword                           helo_name  contained
 
-syn region keepalivedhostBlock start="\s*host\ze\s*{" matchgroup=keepalivedDelimiter end="\zs}" contains=keepalivedDelimiter,keepalivedhostKeyword,keepalivedhostDefinition,keepalivedOperator,keepalivedComment,keepalivedNumber,keepalivedString,keepalivedBoolean,ipaddress,ipaddr_cidr,keepalivedGenericBlock contained containedin=keepalivedSMTP_CHECKBlock
+syn region keepalivedhostBlock start="\s*host\ze\s*{" matchgroup=keepalivedDelimiter end="\zs}" contains=keepalivedDelimiter,keepalivedhostKeyword,keepalivedhostDefinition,keepalivedOperator,keepalivedComment,keepalivedNumber,keepalivedString,keepalivedBoolean,ipaddress,ipaddr_cidr,keepalivedGenericBlock,keepalivedCommonCheckerKeyword contained containedin=keepalivedSMTP_CHECKBlock
 syn keyword keepalivedhostDefinition                           host contained containedin=keepalivedhostBlock
 
 " host
-syn keyword keepalivedhostKeyword                              bindto  contained
-syn keyword keepalivedhostKeyword                          connect_ip  contained
-syn keyword keepalivedhostKeyword                        connect_port  contained
 highlight link keepalivedhostDefinition Identifier
 highlight link keepalivedhostKeyword Identifier
 
 syn keyword keepalivedSMTP_CHECKKeyword                               retry  contained
+syn keyword keepalivedSMTP_CHECKKeyword                              warmup  contained
 highlight link keepalivedSMTP_CHECKDefinition Identifier
 highlight link keepalivedSMTP_CHECKKeyword Identifier
 
 
 
-syn region keepalivedTCP_CHECKBlock start="\s*TCP_CHECK\ze\s*{" matchgroup=keepalivedDelimiter end="\zs}" contains=keepalivedDelimiter,keepalivedTCP_CHECKKeyword,keepalivedTCP_CHECKDefinition,keepalivedOperator,keepalivedComment,keepalivedNumber,keepalivedString,keepalivedBoolean,ipaddress,ipaddr_cidr,keepalivedGenericBlock contained containedin=keepalivedreal_serverBlock
+syn region keepalivedTCP_CHECKBlock start="\s*TCP_CHECK\ze\s*{" matchgroup=keepalivedDelimiter end="\zs}" contains=keepalivedDelimiter,keepalivedTCP_CHECKKeyword,keepalivedTCP_CHECKDefinition,keepalivedOperator,keepalivedComment,keepalivedNumber,keepalivedString,keepalivedBoolean,ipaddress,ipaddr_cidr,keepalivedGenericBlock,keepalivedCommonCheckerKeyword contained containedin=keepalivedreal_serverBlock
 syn keyword keepalivedTCP_CHECKDefinition                      TCP_CHECK contained containedin=keepalivedTCP_CHECKBlock
 
 " TCP_CHECK
-syn keyword keepalivedTCP_CHECKKeyword                              bindto  contained
-syn keyword keepalivedTCP_CHECKKeyword                        connect_port  contained
-syn keyword keepalivedTCP_CHECKKeyword                     connect_timeout  contained
+syn keyword keepalivedTCP_CHECKKeyword                              warmup  contained
 highlight link keepalivedTCP_CHECKDefinition Identifier
 highlight link keepalivedTCP_CHECKKeyword Identifier
 
 
 
-syn region keepalivedHTTP_GETBlock start="\s*HTTP_GET\|SSL_GET\ze\s*{" matchgroup=keepalivedDelimiter end="\zs}" contains=keepalivedDelimiter,keepalivedHTTP_GETKeyword,keepalivedHTTP_GETDefinition,keepalivedOperator,keepalivedComment,keepalivedNumber,keepalivedString,keepalivedBoolean,ipaddress,ipaddr_cidr,keepalivedGenericBlock contained containedin=keepalivedreal_serverBlock
+syn region keepalivedHTTP_GETBlock start="\s*HTTP_GET\|SSL_GET\ze\s*{" matchgroup=keepalivedDelimiter end="\zs}" contains=keepalivedDelimiter,keepalivedHTTP_GETKeyword,keepalivedHTTP_GETDefinition,keepalivedOperator,keepalivedComment,keepalivedNumber,keepalivedString,keepalivedBoolean,ipaddress,ipaddr_cidr,keepalivedGenericBlock,keepalivedCommonCheckerKeyword contained containedin=keepalivedreal_serverBlock
 syn keyword keepalivedHTTP_GETDefinition               HTTP_GET SSL_GET contained containedin=keepalivedHTTP_GETBlock
 
 " HTTP_GET
-syn keyword keepalivedHTTP_GETKeyword                              bindto  contained
-syn keyword keepalivedHTTP_GETKeyword                        connect_port  contained
-syn keyword keepalivedHTTP_GETKeyword                     connect_timeout  contained
 syn keyword keepalivedHTTP_GETKeyword                  delay_before_retry  contained
 syn keyword keepalivedHTTP_GETKeyword                        nb_get_retry  contained
 
@@ -287,17 +282,15 @@ syn keyword keepalivedurlKeyword                         status_code  contained
 highlight link keepalivedurlDefinition Identifier
 highlight link keepalivedurlKeyword Identifier
 
+syn keyword keepalivedHTTP_GETKeyword                              warmup  contained
 highlight link keepalivedHTTP_GETDefinition Identifier
 highlight link keepalivedHTTP_GETKeyword Identifier
 
 
-syn region keepalivedSSL_GETBlock start="\s*SSL_GET\ze\s*{" matchgroup=keepalivedDelimiter end="\zs}" contains=keepalivedDelimiter,keepalivedSSL_GETKeyword,keepalivedSSL_GETDefinition,keepalivedOperator,keepalivedComment,keepalivedNumber,keepalivedString,keepalivedBoolean,ipaddress,ipaddr_cidr,keepalivedGenericBlock contained containedin=keepalivedreal_serverBlock
+syn region keepalivedSSL_GETBlock start="\s*SSL_GET\ze\s*{" matchgroup=keepalivedDelimiter end="\zs}" contains=keepalivedDelimiter,keepalivedSSL_GETKeyword,keepalivedSSL_GETDefinition,keepalivedOperator,keepalivedComment,keepalivedNumber,keepalivedString,keepalivedBoolean,ipaddress,ipaddr_cidr,keepalivedGenericBlock,keepalivedCommonCheckerKeyword contained containedin=keepalivedreal_serverBlock
 syn keyword keepalivedSSL_GETDefinition                        SSL_GET contained containedin=keepalivedSSL_GETBlock
 
 " SSL_GET
-syn keyword keepalivedSSL_GETKeyword                              bindto  contained
-syn keyword keepalivedSSL_GETKeyword                        connect_port  contained
-syn keyword keepalivedSSL_GETKeyword                     connect_timeout  contained
 syn keyword keepalivedSSL_GETKeyword                  delay_before_retry  contained
 syn keyword keepalivedSSL_GETKeyword                        nb_get_retry  contained
 
@@ -311,12 +304,20 @@ syn keyword keepalivedurlKeyword                         status_code  contained
 highlight link keepalivedurlDefinition Identifier
 highlight link keepalivedurlKeyword Identifier
 
+syn keyword keepalivedSSL_GETKeyword                              warmup  contained
 highlight link keepalivedSSL_GETDefinition Identifier
 highlight link keepalivedSSL_GETKeyword Identifier
 
 
 
+syn keyword keepalivedCommonCheckerKeyword                      bind_port  contained
+syn keyword keepalivedCommonCheckerKeyword                         bindto  contained
+syn keyword keepalivedCommonCheckerKeyword                     connect_ip  contained
+syn keyword keepalivedCommonCheckerKeyword                   connect_port  contained
+syn keyword keepalivedCommonCheckerKeyword                connect_timeout  contained
+syn keyword keepalivedCommonCheckerKeyword                         fwmark  contained
 highlight link keepalivedCommonCheckerKeyword Identifier
+
 syn region keepalivedGenericBlock matchgroup=keepalivedDelimiter start="\(^\s*\(SSL\|global_defs\|static_ipaddress\|static_routes\|virtual_server\|real_server\|vrrp_instance\|authentication\|vrrp_script\|vrrp_sync_group\|MISC_CHECK\|SMTP_CHECK\|host\|TCP_CHECK\|HTTP_GET\|SSL_GET\|url\|SSL_GET\|url\)\(\s\+[a-zA-Z0-9_.:]\+\)\?\(\s\+\w\+\)\?\s*\)\@<!{" end="}" transparent
 
 
