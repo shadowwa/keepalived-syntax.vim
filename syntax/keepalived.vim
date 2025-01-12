@@ -1,7 +1,7 @@
 " Vim syntax file
 " Language:     keepalived config http://www.keepalived.org/
 " URL:          https://github.com/shadowwa/keepalived-syntax.vim
-" Version:      2.0.6
+" Version:      2.0.7
 " Author:       Akira Maeda <glidenote@gmail.com>
 " Maintainer:   Shad
 
@@ -22,7 +22,7 @@ syn match   keepalivedNumber      "[-+]\=\<\d\+\(\.\d*\)\=\>"
 syn region  keepalivedString      start=+"+ skip=+\\"+ end=+"+
 
 syn keyword keepalivedBoolean on off true false yes no
-syn keyword keepalivedLvsSched rr wrr lc wlc lblc sh dh fo ovf lblcr sed nq containedin=keepalivedvirtual_serverBlock
+syn keyword keepalivedLvsSched rr wrr lc wlc lblc sh mh dh fo ovf lblcr sed nq containedin=keepalivedvirtual_serverBlock
 syn keyword keepalivedStatus MASTER BACKUP containedin=keepalivedvrrp_instanceBlock
 syn keyword keepalivedProto TCP SCTP UDP containedin=keepalivedvirtual_serverBlock
 syn keyword keepalivedMethod NAT DR TUN containedin=keepalivedvirtual_serverBlock
@@ -427,6 +427,12 @@ syn keyword keepalivedurlDefinition                            url contained con
 " url
 syn keyword keepalivedurlKeyword                              digest  contained
 syn keyword keepalivedurlKeyword                                path  contained
+syn keyword keepalivedurlKeyword                               regex  contained
+syn keyword keepalivedurlKeyword                    regex_max_offset  contained
+syn keyword keepalivedurlKeyword                    regex_min_offset  contained
+syn keyword keepalivedurlKeyword                      regex_no_match  contained
+syn keyword keepalivedurlKeyword                       regex_options  contained
+syn keyword keepalivedurlKeyword                         regex_stack  contained
 syn keyword keepalivedurlKeyword                         status_code  contained
 syn keyword keepalivedurlKeyword                         virtualhost  contained
 highlight link keepalivedurlDefinition Identifier
