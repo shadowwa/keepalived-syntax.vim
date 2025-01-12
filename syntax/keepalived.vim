@@ -1,7 +1,7 @@
 " Vim syntax file
 " Language:     keepalived config http://www.keepalived.org/
 " URL:          https://github.com/shadowwa/keepalived-syntax.vim
-" Version:      1.2.24
+" Version:      1.3.0
 " Author:       Akira Maeda <glidenote@gmail.com>
 " Maintainer:   Shad
 
@@ -89,6 +89,8 @@ syn keyword keepalivedglobal_defsDefinition                    global_defs conta
 syn keyword keepalivedglobal_defsKeyword                     checker_no_swap  contained
 syn keyword keepalivedglobal_defsKeyword                    checker_priority  contained
 syn keyword keepalivedglobal_defsKeyword                   default_interface  contained
+syn keyword keepalivedglobal_defsKeyword                         enable_dbus  contained
+syn keyword keepalivedglobal_defsKeyword              enable_script_security  contained
 syn keyword keepalivedglobal_defsKeyword                 enable_snmp_checker  contained
 syn keyword keepalivedglobal_defsKeyword              enable_snmp_keepalived  contained
 syn keyword keepalivedglobal_defsKeyword                     enable_snmp_rfc  contained
@@ -101,6 +103,7 @@ syn keyword keepalivedglobal_defsKeyword                        lvs_timeouts  co
 syn keyword keepalivedglobal_defsKeyword                  notification_email  contained
 syn keyword keepalivedglobal_defsKeyword             notification_email_from  contained
 syn keyword keepalivedglobal_defsKeyword                           router_id  contained
+syn keyword keepalivedglobal_defsKeyword                         script_user  contained
 syn keyword keepalivedglobal_defsKeyword                smtp_connect_timeout  contained
 syn keyword keepalivedglobal_defsKeyword                      smtp_helo_name  contained
 syn keyword keepalivedglobal_defsKeyword                         smtp_server  contained
@@ -129,6 +132,7 @@ highlight link keepalivedglobal_defsKeyword       Type
 
 syn keyword keepalivedrootKeyword                            instance           
 syn keyword keepalivedrootKeyword                linkbeat_use_polling           
+syn keyword keepalivedrootKeyword               namespace_with_ipsets           
 syn keyword keepalivedrootKeyword                       net_namespace           
 
 syn region keepalivedstatic_ipaddressBlock start="\s*static_ipaddress\ze\s*{" matchgroup=keepalivedDelimiter end="\zs}" contains=keepalivedDelimiter,keepalivedstatic_ipaddressKeyword,keepalivedstatic_ipaddressDefinition,keepalivedOperator,keepalivedComment,keepalivedNumber,keepalivedString,keepalivedBoolean,ipaddress,ipaddr_cidr,keepalivedGenericBlock
@@ -149,7 +153,11 @@ syn keyword keepalivedvirtual_serverDefinition                 virtual_server co
 " virtual_server
 syn keyword keepalivedvirtual_serverKeyword                               alpha  contained
 syn keyword keepalivedvirtual_serverKeyword                          delay_loop  contained
+syn keyword keepalivedvirtual_serverKeyword                              flag-1  contained
+syn keyword keepalivedvirtual_serverKeyword                              flag-2  contained
+syn keyword keepalivedvirtual_serverKeyword                              flag-3  contained
 syn keyword keepalivedvirtual_serverKeyword                          ha_suspend  contained
+syn keyword keepalivedvirtual_serverKeyword                              hashed  contained
 syn keyword keepalivedvirtual_serverKeyword                          hysteresis  contained
 syn keyword keepalivedvirtual_serverKeyword                           ip_family  contained
 syn keyword keepalivedvirtual_serverKeyword                             lb_algo  contained
@@ -179,6 +187,8 @@ syn keyword keepalivedreal_serverKeyword                              weight  co
 highlight link keepalivedreal_serverDefinition  Statement
 highlight link keepalivedreal_serverKeyword       Type
 
+syn keyword keepalivedvirtual_serverKeyword                         sh-fallback  contained
+syn keyword keepalivedvirtual_serverKeyword                             sh-port  contained
 syn keyword keepalivedvirtual_serverKeyword                        sorry_server  contained
 syn keyword keepalivedvirtual_serverKeyword                sorry_server_inhibit  contained
 syn keyword keepalivedvirtual_serverKeyword                         virtualhost  contained
@@ -216,6 +226,7 @@ syn keyword keepalivedvrrp_instanceKeyword                lower_prio_no_advert  
 syn keyword keepalivedvrrp_instanceKeyword           lvs_sync_daemon_interface  contained
 syn keyword keepalivedvrrp_instanceKeyword                        mcast_src_ip  contained
 syn keyword keepalivedvrrp_instanceKeyword                         native_ipv6  contained
+syn keyword keepalivedvrrp_instanceKeyword                           no_accept  contained
 syn keyword keepalivedvrrp_instanceKeyword                           nopreempt  contained
 syn keyword keepalivedvrrp_instanceKeyword                              notify  contained
 syn keyword keepalivedvrrp_instanceKeyword                       notify_backup  contained
@@ -225,6 +236,7 @@ syn keyword keepalivedvrrp_instanceKeyword                         notify_stop  
 syn keyword keepalivedvrrp_instanceKeyword                             preempt  contained
 syn keyword keepalivedvrrp_instanceKeyword                       preempt_delay  contained
 syn keyword keepalivedvrrp_instanceKeyword                            priority  contained
+syn keyword keepalivedvrrp_instanceKeyword                 promote_secondaries  contained
 syn keyword keepalivedvrrp_instanceKeyword                 skip_check_adv_addr  contained
 syn keyword keepalivedvrrp_instanceKeyword                          smtp_alert  contained
 syn keyword keepalivedvrrp_instanceKeyword                               state  contained
@@ -254,6 +266,7 @@ syn keyword keepalivedvrrp_scriptKeyword                            interval  co
 syn keyword keepalivedvrrp_scriptKeyword                                rise  contained
 syn keyword keepalivedvrrp_scriptKeyword                              script  contained
 syn keyword keepalivedvrrp_scriptKeyword                             timeout  contained
+syn keyword keepalivedvrrp_scriptKeyword                                user  contained
 syn keyword keepalivedvrrp_scriptKeyword                              weight  contained
 highlight link keepalivedvrrp_scriptDefinition  Statement
 highlight link keepalivedvrrp_scriptKeyword       Type
@@ -283,6 +296,7 @@ syn keyword keepalivedMISC_CHECKDefinition                     MISC_CHECK contai
 syn keyword keepalivedMISC_CHECKKeyword                        misc_dynamic  contained
 syn keyword keepalivedMISC_CHECKKeyword                           misc_path  contained
 syn keyword keepalivedMISC_CHECKKeyword                        misc_timeout  contained
+syn keyword keepalivedMISC_CHECKKeyword                                user  contained
 syn keyword keepalivedMISC_CHECKKeyword                              warmup  contained
 highlight link keepalivedMISC_CHECKDefinition Identifier
 highlight link keepalivedMISC_CHECKKeyword Identifier
@@ -345,6 +359,18 @@ highlight link keepalivedHTTP_GETKeyword Identifier
 
 
 
+
+syn region keepalivedDNS_CHECKBlock start="\s*DNS_CHECK\ze\s*{" matchgroup=keepalivedDelimiter end="\zs}" contains=keepalivedDelimiter,keepalivedDNS_CHECKKeyword,keepalivedDNS_CHECKDefinition,keepalivedOperator,keepalivedComment,keepalivedNumber,keepalivedString,keepalivedBoolean,ipaddress,ipaddr_cidr,keepalivedGenericBlock,keepalivedCommonCheckerKeyword contained containedin=keepalivedreal_serverBlock
+syn keyword keepalivedDNS_CHECKDefinition                      DNS_CHECK contained containedin=keepalivedDNS_CHECKBlock
+
+" DNS_CHECK
+syn keyword keepalivedDNS_CHECKKeyword                                name  contained
+syn keyword keepalivedDNS_CHECKKeyword                               retry  contained
+syn keyword keepalivedDNS_CHECKKeyword                                type  contained
+highlight link keepalivedDNS_CHECKDefinition Identifier
+highlight link keepalivedDNS_CHECKKeyword Identifier
+
+
 syn keyword keepalivedCommonCheckerKeyword                      bind_port  contained
 syn keyword keepalivedCommonCheckerKeyword                         bindto  contained
 syn keyword keepalivedCommonCheckerKeyword                     connect_ip  contained
@@ -353,7 +379,7 @@ syn keyword keepalivedCommonCheckerKeyword                connect_timeout  conta
 syn keyword keepalivedCommonCheckerKeyword                         fwmark  contained
 highlight link keepalivedCommonCheckerKeyword Identifier
 
-syn region keepalivedGenericBlock matchgroup=keepalivedDelimiter start="\(^\s*\(SSL\|garp_group\|global_defs\|static_ipaddress\|static_routes\|virtual_server\|real_server\|vrrp_instance\|authentication\|vrrp_script\|vrrp_sync_group\|MISC_CHECK\|SMTP_CHECK\|host\|TCP_CHECK\|HTTP_GET\|SSL_GET\|url\)\(\s\+[a-zA-Z0-9_.:]\+\)\?\(\s\+\w\+\)\?\s*\)\@<!{" end="}" transparent
+syn region keepalivedGenericBlock matchgroup=keepalivedDelimiter start="\(^\s*\(SSL\|garp_group\|global_defs\|static_ipaddress\|static_routes\|virtual_server\|real_server\|vrrp_instance\|authentication\|vrrp_script\|vrrp_sync_group\|MISC_CHECK\|SMTP_CHECK\|host\|TCP_CHECK\|HTTP_GET\|SSL_GET\|url\|DNS_CHECK\)\(\s\+[a-zA-Z0-9_.:]\+\)\?\(\s\+\w\+\)\?\s*\)\@<!{" end="}" transparent
 
 
 " highlight
