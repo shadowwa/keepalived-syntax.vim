@@ -1,7 +1,7 @@
 " Vim syntax file
 " Language:     keepalived config http://www.keepalived.org/
 " URL:          https://github.com/shadowwa/keepalived-syntax.vim
-" Version:      2.0.3
+" Version:      2.0.6
 " Author:       Akira Maeda <glidenote@gmail.com>
 " Maintainer:   Shad
 
@@ -294,6 +294,7 @@ syn keyword keepalivedvrrp_instanceKeyword                              notify  
 syn keyword keepalivedvrrp_instanceKeyword                       notify_backup  contained
 syn keyword keepalivedvrrp_instanceKeyword                        notify_fault  contained
 syn keyword keepalivedvrrp_instanceKeyword                       notify_master  contained
+syn keyword keepalivedvrrp_instanceKeyword          notify_master_rx_lower_pri  contained
 syn keyword keepalivedvrrp_instanceKeyword                         notify_stop  contained
 syn keyword keepalivedvrrp_instanceKeyword                old_unicast_checksum  contained
 syn keyword keepalivedvrrp_instanceKeyword                             preempt  contained
