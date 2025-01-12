@@ -10,15 +10,9 @@ syntax on
 
 ![](http://blog.glidenote.com/images/2012/04/keepalived1.png)
 
-## Setup
-
-add this line to your `.vimrc`
-
-    au BufRead,BufNewFile keepalived.conf setlocal ft=keepalived
-
 ## Install
 
-Copy it to your syntax directory.
+Copy it to your vim directory.
 
 ## License
 
