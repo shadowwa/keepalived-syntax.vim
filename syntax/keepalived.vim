@@ -21,6 +21,10 @@ syn region  keepalivedBlock start=+^+ end=+{+ contains=keepalivedComment,keepali
 
 syn keyword keepalivedBoolean on
 syn keyword keepalivedBoolean off
+syn keyword keepalivedLvsSched rr wrr lc wlc lblc sh dh lblcr sed nq
+syn keyword keepalivedStatus MASTER BACKUP
+syn keyword keepalivedProto TCP SCTP UDP
+syn keyword keepalivedMethod NAT DR TUN
 
 syn keyword keepalivedDefinitionBlock global_defs         contained
 syn keyword keepalivedDefinitionBlock virtual_server      contained
@@ -136,6 +140,10 @@ hi link keepalivedBlock               Normal
 hi link keepalivedString              String
 
 hi link keepalivedBoolean             Boolean
+hi link keepalivedLvsSched            Constant
+hi link keepalivedStatus              Constant
+hi link keepalivedProto               Constant
+hi link keepalivedMethod              Constant
 hi link keepalivedDefinitionBlock     Statement
 hi link keepalivedDefinitionImportant Type
 hi link keepalivedDefinition          Identifier
