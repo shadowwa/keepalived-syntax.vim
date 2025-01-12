@@ -1,7 +1,7 @@
 " Vim syntax file
 " Language:     keepalived config http://www.keepalived.org/
 " URL:          https://github.com/shadowwa/keepalived-syntax.vim
-" Version:      2.0.14
+" Version:      2.0.15
 " Author:       Akira Maeda <glidenote@gmail.com>
 " Maintainer:   Shad
 
@@ -109,6 +109,7 @@ syn keyword keepalivedglobal_defsKeyword                   enable_snmp_rfcv3  co
 syn keyword keepalivedglobal_defsKeyword                    enable_snmp_vrrp  contained
 syn keyword keepalivedglobal_defsKeyword                        enable_traps  contained
 syn keyword keepalivedglobal_defsKeyword                           lvs_flush  contained
+syn keyword keepalivedglobal_defsKeyword                    lvs_flush_onstop  contained
 syn keyword keepalivedglobal_defsKeyword            lvs_netlink_cmd_rcv_bufs  contained
 syn keyword keepalivedglobal_defsKeyword      lvs_netlink_cmd_rcv_bufs_force  contained
 syn keyword keepalivedglobal_defsKeyword        lvs_netlink_monitor_rcv_bufs  contained
@@ -129,6 +130,7 @@ syn keyword keepalivedglobal_defsKeyword                         notify_fifo  co
 syn keyword keepalivedglobal_defsKeyword                  notify_fifo_script  contained
 syn keyword keepalivedglobal_defsKeyword            process_monitor_rcv_bufs  contained
 syn keyword keepalivedglobal_defsKeyword      process_monitor_rcv_bufs_force  contained
+syn keyword keepalivedglobal_defsKeyword                         random_seed  contained
 syn keyword keepalivedglobal_defsKeyword                           router_id  contained
 syn keyword keepalivedglobal_defsKeyword                    rs_init_notifies  contained
 syn keyword keepalivedglobal_defsKeyword                         script_user  contained
