@@ -1,7 +1,7 @@
 " Vim syntax file
 " Language:     keepalived config http://www.keepalived.org/
 " URL:          https://github.com/shadowwa/keepalived-syntax.vim
-" Version:      2.0.17
+" Version:      2.0.20
 " Author:       Akira Maeda <glidenote@gmail.com>
 " Maintainer:   Shad
 
@@ -234,6 +234,8 @@ syn keyword keepalivedvirtual_serverKeyword                             lb_algo 
 syn keyword keepalivedvirtual_serverKeyword                             lb_kind  contained
 syn keyword keepalivedvirtual_serverKeyword                          lvs_method  contained
 syn keyword keepalivedvirtual_serverKeyword                           lvs_sched  contained
+syn keyword keepalivedvirtual_serverKeyword                         mh-fallback  contained
+syn keyword keepalivedvirtual_serverKeyword                             mh-port  contained
 syn keyword keepalivedvirtual_serverKeyword                               omega  contained
 syn keyword keepalivedvirtual_serverKeyword                                 ops  contained
 syn keyword keepalivedvirtual_serverKeyword                  persistence_engine  contained
