@@ -156,7 +156,6 @@ hi link keepalivedDelimiter           Delimiter
 hi link keepalivedOperator            Operator
 hi link keepalivedComment             Comment
 hi link keepalivedNumber              Number
-hi link keepalivedComment             Comment
 hi link keepalivedVariable            PreProc
 hi link keepalivedBlock               Normal
 hi link keepalivedString              String
