@@ -1,7 +1,7 @@
 " Vim syntax file
 " Language:     keepalived config http://www.keepalived.org/
 " URL:          https://github.com/shadowwa/keepalived-syntax.vim
-" Version:      2.2.0
+" Version:      2.2.2
 " Author:       Akira Maeda <glidenote@gmail.com>
 " Maintainer:   Shad
 
@@ -134,6 +134,9 @@ syn keyword keepalivedglobal_defsKeyword             min_auto_priority_delay  co
 syn keyword keepalivedglobal_defsKeyword                            nftables  contained
 syn keyword keepalivedglobal_defsKeyword                   nftables_counters  contained
 syn keyword keepalivedglobal_defsKeyword                    nftables_ifindex  contained
+syn keyword keepalivedglobal_defsKeyword                       nftables_ipvs  contained
+syn keyword keepalivedglobal_defsKeyword              nftables_ipvs_priority  contained
+syn keyword keepalivedglobal_defsKeyword          nftables_ipvs_start_fwmark  contained
 syn keyword keepalivedglobal_defsKeyword                   nftables_priority  contained
 syn keyword keepalivedglobal_defsKeyword                   no_checker_emails  contained
 syn keyword keepalivedglobal_defsKeyword                     no_email_faults  contained
