@@ -1,7 +1,7 @@
 " Vim syntax file
 " Language:     keepalived config http://www.keepalived.org/
 " URL:          https://github.com/shadowwa/keepalived-syntax.vim
-" Version:      1.2.23
+" Version:      1.2.24
 " Author:       Akira Maeda <glidenote@gmail.com>
 " Maintainer:   Shad
 
@@ -88,6 +88,7 @@ syn keyword keepalivedglobal_defsDefinition                    global_defs conta
 " global_defs
 syn keyword keepalivedglobal_defsKeyword                     checker_no_swap  contained
 syn keyword keepalivedglobal_defsKeyword                    checker_priority  contained
+syn keyword keepalivedglobal_defsKeyword                   default_interface  contained
 syn keyword keepalivedglobal_defsKeyword                 enable_snmp_checker  contained
 syn keyword keepalivedglobal_defsKeyword              enable_snmp_keepalived  contained
 syn keyword keepalivedglobal_defsKeyword                     enable_snmp_rfc  contained
@@ -96,6 +97,7 @@ syn keyword keepalivedglobal_defsKeyword                   enable_snmp_rfcv3  co
 syn keyword keepalivedglobal_defsKeyword                        enable_traps  contained
 syn keyword keepalivedglobal_defsKeyword                           lvs_flush  contained
 syn keyword keepalivedglobal_defsKeyword                     lvs_sync_daemon  contained
+syn keyword keepalivedglobal_defsKeyword                        lvs_timeouts  contained
 syn keyword keepalivedglobal_defsKeyword                  notification_email  contained
 syn keyword keepalivedglobal_defsKeyword             notification_email_from  contained
 syn keyword keepalivedglobal_defsKeyword                           router_id  contained
@@ -125,7 +127,9 @@ syn keyword keepalivedglobal_defsKeyword                        vrrp_version  co
 highlight link keepalivedglobal_defsDefinition  Statement
 highlight link keepalivedglobal_defsKeyword       Type
 
+syn keyword keepalivedrootKeyword                            instance           
 syn keyword keepalivedrootKeyword                linkbeat_use_polling           
+syn keyword keepalivedrootKeyword                       net_namespace           
 
 syn region keepalivedstatic_ipaddressBlock start="\s*static_ipaddress\ze\s*{" matchgroup=keepalivedDelimiter end="\zs}" contains=keepalivedDelimiter,keepalivedstatic_ipaddressKeyword,keepalivedstatic_ipaddressDefinition,keepalivedOperator,keepalivedComment,keepalivedNumber,keepalivedString,keepalivedBoolean,ipaddress,ipaddr_cidr,keepalivedGenericBlock
 syn keyword keepalivedstatic_ipaddressDefinition               static_ipaddress contained containedin=keepalivedstatic_ipaddressBlock
@@ -137,6 +141,7 @@ syn keyword keepalivedstatic_routesDefinition                  static_routes con
 
 highlight link keepalivedstatic_routesDefinition  Statement
 syn keyword keepalivedrootKeyword                        static_rules           
+syn keyword keepalivedrootKeyword                         use_pid_dir           
 
 syn region keepalivedvirtual_serverBlock start="\s*virtual_server\ze\s*[a-zA-Z0-9_.:]*\s*\w*\s*{" matchgroup=keepalivedDelimiter end="\zs}" contains=keepalivedDelimiter,keepalivedvirtual_serverKeyword,keepalivedvirtual_serverDefinition,keepalivedOperator,keepalivedComment,keepalivedNumber,keepalivedString,keepalivedBoolean,ipaddress,ipaddr_cidr,keepalivedGenericBlock
 syn keyword keepalivedvirtual_serverDefinition                 virtual_server contained containedin=keepalivedvirtual_serverBlock
