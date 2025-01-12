@@ -1,7 +1,7 @@
 " Vim syntax file
 " Language:     keepalived config http://www.keepalived.org/
 " URL:          https://github.com/shadowwa/keepalived-syntax.vim
-" Version:      1.3.0
+" Version:      1.3.2
 " Author:       Akira Maeda <glidenote@gmail.com>
 " Maintainer:   Shad
 
@@ -262,6 +262,7 @@ syn keyword keepalivedvrrp_scriptDefinition                    vrrp_script conta
 
 " vrrp_script
 syn keyword keepalivedvrrp_scriptKeyword                                fall  contained
+syn keyword keepalivedvrrp_scriptKeyword                           init_fail  contained
 syn keyword keepalivedvrrp_scriptKeyword                            interval  contained
 syn keyword keepalivedvrrp_scriptKeyword                                rise  contained
 syn keyword keepalivedvrrp_scriptKeyword                              script  contained
