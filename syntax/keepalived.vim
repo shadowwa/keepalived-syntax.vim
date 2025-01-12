@@ -1,7 +1,7 @@
 " Vim syntax file
 " Language:     keepalived config http://www.keepalived.org/
 " URL:          https://github.com/shadowwa/keepalived-syntax.vim
-" Version:      1.4.3
+" Version:      2.0.0
 " Author:       Akira Maeda <glidenote@gmail.com>
 " Maintainer:   Shad
 
@@ -69,6 +69,7 @@ syn keyword keepalivedSSLKeyword                            password  contained
 highlight link keepalivedSSLDefinition  Statement
 highlight link keepalivedSSLKeyword       Type
 
+syn keyword keepalivedrootKeyword                     child_wait_time           
 
 syn region keepalivedgarp_groupBlock start="\s*garp_group\ze\s*{" matchgroup=keepalivedDelimiter end="\zs}" contains=keepalivedDelimiter,keepalivedgarp_groupKeyword,keepalivedgarp_groupDefinition,keepalivedOperator,keepalivedComment,keepalivedNumber,keepalivedString,keepalivedBoolean,ipaddress,ipaddr_cidr,keepalivedGenericBlock
 syn keyword keepalivedgarp_groupDefinition                     garp_group contained containedin=keepalivedgarp_groupBlock
@@ -86,10 +87,17 @@ syn region keepalivedglobal_defsBlock start="\s*global_defs\ze\s*{" matchgroup=k
 syn keyword keepalivedglobal_defsDefinition                    global_defs contained containedin=keepalivedglobal_defsBlock
 
 " global_defs
+syn keyword keepalivedglobal_defsKeyword                         bfd_no_swap  contained
+syn keyword keepalivedglobal_defsKeyword                        bfd_priority  contained
+syn keyword keepalivedglobal_defsKeyword                    bfd_rlimit_rtime  contained
+syn keyword keepalivedglobal_defsKeyword                     bfd_rt_priority  contained
 syn keyword keepalivedglobal_defsKeyword                     checker_no_swap  contained
 syn keyword keepalivedglobal_defsKeyword                    checker_priority  contained
+syn keyword keepalivedglobal_defsKeyword                checker_rlimit_rtime  contained
+syn keyword keepalivedglobal_defsKeyword                 checker_rt_priority  contained
 syn keyword keepalivedglobal_defsKeyword                   dbus_service_name  contained
 syn keyword keepalivedglobal_defsKeyword                   default_interface  contained
+syn keyword keepalivedglobal_defsKeyword                  dynamic_interfaces  contained
 syn keyword keepalivedglobal_defsKeyword                         enable_dbus  contained
 syn keyword keepalivedglobal_defsKeyword              enable_script_security  contained
 syn keyword keepalivedglobal_defsKeyword                 enable_snmp_checker  contained
@@ -97,18 +105,29 @@ syn keyword keepalivedglobal_defsKeyword              enable_snmp_keepalived  co
 syn keyword keepalivedglobal_defsKeyword                     enable_snmp_rfc  contained
 syn keyword keepalivedglobal_defsKeyword                   enable_snmp_rfcv2  contained
 syn keyword keepalivedglobal_defsKeyword                   enable_snmp_rfcv3  contained
+syn keyword keepalivedglobal_defsKeyword                    enable_snmp_vrrp  contained
 syn keyword keepalivedglobal_defsKeyword                        enable_traps  contained
 syn keyword keepalivedglobal_defsKeyword                           lvs_flush  contained
+syn keyword keepalivedglobal_defsKeyword            lvs_netlink_cmd_rcv_bufs  contained
+syn keyword keepalivedglobal_defsKeyword      lvs_netlink_cmd_rcv_bufs_force  contained
+syn keyword keepalivedglobal_defsKeyword        lvs_netlink_monitor_rcv_bufs  contained
+syn keyword keepalivedglobal_defsKeyword  lvs_netlink_monitor_rcv_bufs_force  contained
 syn keyword keepalivedglobal_defsKeyword                     lvs_notify_fifo  contained
 syn keyword keepalivedglobal_defsKeyword              lvs_notify_fifo_script  contained
 syn keyword keepalivedglobal_defsKeyword                     lvs_sync_daemon  contained
 syn keyword keepalivedglobal_defsKeyword                        lvs_timeouts  contained
+syn keyword keepalivedglobal_defsKeyword                   no_checker_emails  contained
+syn keyword keepalivedglobal_defsKeyword                     no_email_faults  contained
 syn keyword keepalivedglobal_defsKeyword                  notification_email  contained
 syn keyword keepalivedglobal_defsKeyword             notification_email_from  contained
 syn keyword keepalivedglobal_defsKeyword                         notify_fifo  contained
 syn keyword keepalivedglobal_defsKeyword                  notify_fifo_script  contained
 syn keyword keepalivedglobal_defsKeyword                           router_id  contained
+syn keyword keepalivedglobal_defsKeyword                    rs_init_notifies  contained
 syn keyword keepalivedglobal_defsKeyword                         script_user  contained
+syn keyword keepalivedglobal_defsKeyword                          smtp_alert  contained
+syn keyword keepalivedglobal_defsKeyword                  smtp_alert_checker  contained
+syn keyword keepalivedglobal_defsKeyword                     smtp_alert_vrrp  contained
 syn keyword keepalivedglobal_defsKeyword                smtp_connect_timeout  contained
 syn keyword keepalivedglobal_defsKeyword                      smtp_helo_name  contained
 syn keyword keepalivedglobal_defsKeyword                         smtp_server  contained
@@ -128,10 +147,16 @@ syn keyword keepalivedglobal_defsKeyword                       vrrp_iptables  co
 syn keyword keepalivedglobal_defsKeyword           vrrp_lower_prio_no_advert  contained
 syn keyword keepalivedglobal_defsKeyword                   vrrp_mcast_group4  contained
 syn keyword keepalivedglobal_defsKeyword                   vrrp_mcast_group6  contained
+syn keyword keepalivedglobal_defsKeyword           vrrp_netlink_cmd_rcv_bufs  contained
+syn keyword keepalivedglobal_defsKeyword     vrrp_netlink_cmd_rcv_bufs_force  contained
+syn keyword keepalivedglobal_defsKeyword       vrrp_netlink_monitor_rcv_bufs  contained
+syn keyword keepalivedglobal_defsKeyword vrrp_netlink_monitor_rcv_bufs_force  contained
 syn keyword keepalivedglobal_defsKeyword                        vrrp_no_swap  contained
 syn keyword keepalivedglobal_defsKeyword                    vrrp_notify_fifo  contained
 syn keyword keepalivedglobal_defsKeyword             vrrp_notify_fifo_script  contained
 syn keyword keepalivedglobal_defsKeyword                       vrrp_priority  contained
+syn keyword keepalivedglobal_defsKeyword                   vrrp_rlimit_rtime  contained
+syn keyword keepalivedglobal_defsKeyword                    vrrp_rt_priority  contained
 syn keyword keepalivedglobal_defsKeyword            vrrp_skip_check_adv_addr  contained
 syn keyword keepalivedglobal_defsKeyword                         vrrp_strict  contained
 syn keyword keepalivedglobal_defsKeyword                        vrrp_version  contained
@@ -197,6 +222,7 @@ syn keyword keepalivedreal_serverKeyword                          lvs_method  co
 syn keyword keepalivedreal_serverKeyword                         notify_down  contained
 syn keyword keepalivedreal_serverKeyword                           notify_up  contained
 syn keyword keepalivedreal_serverKeyword                               retry  contained
+syn keyword keepalivedreal_serverKeyword                          smtp_alert  contained
 syn keyword keepalivedreal_serverKeyword                          uthreshold  contained
 syn keyword keepalivedreal_serverKeyword                         virtualhost  contained
 syn keyword keepalivedreal_serverKeyword                              warmup  contained
@@ -207,6 +233,7 @@ highlight link keepalivedreal_serverKeyword       Type
 syn keyword keepalivedvirtual_serverKeyword                               retry  contained
 syn keyword keepalivedvirtual_serverKeyword                         sh-fallback  contained
 syn keyword keepalivedvirtual_serverKeyword                             sh-port  contained
+syn keyword keepalivedvirtual_serverKeyword                          smtp_alert  contained
 syn keyword keepalivedvirtual_serverKeyword                        sorry_server  contained
 syn keyword keepalivedvirtual_serverKeyword                sorry_server_inhibit  contained
 syn keyword keepalivedvirtual_serverKeyword             sorry_server_lvs_method  contained
@@ -244,6 +271,7 @@ syn keyword keepalivedvrrp_instanceKeyword          garp_master_refresh_repeat  
 syn keyword keepalivedvrrp_instanceKeyword                  garp_master_repeat  contained
 syn keyword keepalivedvrrp_instanceKeyword             higher_prio_send_advert  contained
 syn keyword keepalivedvrrp_instanceKeyword                           interface  contained
+syn keyword keepalivedvrrp_instanceKeyword                linkbeat_use_polling  contained
 syn keyword keepalivedvrrp_instanceKeyword                lower_prio_no_advert  contained
 syn keyword keepalivedvrrp_instanceKeyword           lvs_sync_daemon_interface  contained
 syn keyword keepalivedvrrp_instanceKeyword                        mcast_src_ip  contained
@@ -264,8 +292,11 @@ syn keyword keepalivedvrrp_instanceKeyword                 skip_check_adv_addr  
 syn keyword keepalivedvrrp_instanceKeyword                          smtp_alert  contained
 syn keyword keepalivedvrrp_instanceKeyword                               state  contained
 syn keyword keepalivedvrrp_instanceKeyword                         strict_mode  contained
+syn keyword keepalivedvrrp_instanceKeyword                           track_bfd  contained
+syn keyword keepalivedvrrp_instanceKeyword                          track_file  contained
 syn keyword keepalivedvrrp_instanceKeyword                     track_interface  contained
 syn keyword keepalivedvrrp_instanceKeyword                        track_script  contained
+syn keyword keepalivedvrrp_instanceKeyword                        track_src_ip  contained
 syn keyword keepalivedvrrp_instanceKeyword                        unicast_peer  contained
 syn keyword keepalivedvrrp_instanceKeyword                      unicast_src_ip  contained
 syn keyword keepalivedvrrp_instanceKeyword                            use_vmac  contained
@@ -306,9 +337,26 @@ syn keyword keepalivedvrrp_sync_groupKeyword                              notify
 syn keyword keepalivedvrrp_sync_groupKeyword                       notify_backup  contained
 syn keyword keepalivedvrrp_sync_groupKeyword                        notify_fault  contained
 syn keyword keepalivedvrrp_sync_groupKeyword                       notify_master  contained
+syn keyword keepalivedvrrp_sync_groupKeyword                         notify_stop  contained
 syn keyword keepalivedvrrp_sync_groupKeyword                          smtp_alert  contained
+syn keyword keepalivedvrrp_sync_groupKeyword          sync_group_tracking_weight  contained
+syn keyword keepalivedvrrp_sync_groupKeyword                           track_bfd  contained
+syn keyword keepalivedvrrp_sync_groupKeyword                          track_file  contained
+syn keyword keepalivedvrrp_sync_groupKeyword                     track_interface  contained
+syn keyword keepalivedvrrp_sync_groupKeyword                        track_script  contained
 highlight link keepalivedvrrp_sync_groupDefinition  Statement
 highlight link keepalivedvrrp_sync_groupKeyword       Type
+
+
+syn region keepalivedvrrp_track_fileBlock start="\s*vrrp_track_file\ze\s*{" matchgroup=keepalivedDelimiter end="\zs}" contains=keepalivedDelimiter,keepalivedvrrp_track_fileKeyword,keepalivedvrrp_track_fileDefinition,keepalivedOperator,keepalivedComment,keepalivedNumber,keepalivedString,keepalivedBoolean,ipaddress,ipaddr_cidr,keepalivedGenericBlock
+syn keyword keepalivedvrrp_track_fileDefinition                vrrp_track_file contained containedin=keepalivedvrrp_track_fileBlock
+
+" vrrp_track_file
+syn keyword keepalivedvrrp_track_fileKeyword                                file  contained
+syn keyword keepalivedvrrp_track_fileKeyword                           init_file  contained
+syn keyword keepalivedvrrp_track_fileKeyword                              weight  contained
+highlight link keepalivedvrrp_track_fileDefinition  Statement
+highlight link keepalivedvrrp_track_fileKeyword       Type
 
 highlight link keepalivedrootKeyword  Statement
 
@@ -388,6 +436,17 @@ highlight link keepalivedDNS_CHECKDefinition Identifier
 highlight link keepalivedDNS_CHECKKeyword Identifier
 
 
+
+syn region keepalivedBFD_CHECKBlock start="\s*BFD_CHECK\ze\s*{" matchgroup=keepalivedDelimiter end="\zs}" contains=keepalivedDelimiter,keepalivedBFD_CHECKKeyword,keepalivedBFD_CHECKDefinition,keepalivedOperator,keepalivedComment,keepalivedNumber,keepalivedString,keepalivedBoolean,ipaddress,ipaddr_cidr,keepalivedGenericBlock contained containedin=keepalivedreal_serverBlock
+syn keyword keepalivedBFD_CHECKDefinition                      BFD_CHECK contained containedin=keepalivedBFD_CHECKBlock
+
+" BFD_CHECK
+syn keyword keepalivedBFD_CHECKKeyword                               alpha  contained
+syn keyword keepalivedBFD_CHECKKeyword                                name  contained
+highlight link keepalivedBFD_CHECKDefinition Identifier
+highlight link keepalivedBFD_CHECKKeyword Identifier
+
+
 syn keyword keepalivedCommonCheckerKeyword                          alpha  contained
 syn keyword keepalivedCommonCheckerKeyword                        bind_if  contained
 syn keyword keepalivedCommonCheckerKeyword                      bind_port  contained
@@ -402,7 +461,7 @@ syn keyword keepalivedCommonCheckerKeyword                          retry  conta
 syn keyword keepalivedCommonCheckerKeyword                         warmup  contained
 highlight link keepalivedCommonCheckerKeyword Identifier
 
-syn region keepalivedGenericBlock matchgroup=keepalivedDelimiter start="\(^\s*\(SSL\|garp_group\|global_defs\|static_ipaddress\|static_routes\|virtual_server\|real_server\|vrrp_instance\|authentication\|vrrp_script\|vrrp_sync_group\|MISC_CHECK\|SMTP_CHECK\|host\|TCP_CHECK\|HTTP_GET\|SSL_GET\|url\|DNS_CHECK\)\(\s\+[a-zA-Z0-9_.:]\+\)\?\(\s\+\w\+\)\?\s*\)\@<!{" end="}" transparent
+syn region keepalivedGenericBlock matchgroup=keepalivedDelimiter start="\(^\s*\(SSL\|garp_group\|global_defs\|static_ipaddress\|static_routes\|virtual_server\|real_server\|vrrp_instance\|authentication\|vrrp_script\|vrrp_sync_group\|vrrp_track_file\|MISC_CHECK\|SMTP_CHECK\|host\|TCP_CHECK\|HTTP_GET\|SSL_GET\|url\|DNS_CHECK\|BFD_CHECK\)\(\s\+[a-zA-Z0-9_.:]\+\)\?\(\s\+\w\+\)\?\s*\)\@<!{" end="}" transparent
 
 
 " highlight
