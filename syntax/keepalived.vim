@@ -1,7 +1,7 @@
 " Vim syntax file
 " Language:     keepalived config http://www.keepalived.org/
 " URL:          https://github.com/shadowwa/keepalived-syntax.vim
-" Version:      1.3.5
+" Version:      1.3.6
 " Author:       Akira Maeda <glidenote@gmail.com>
 " Maintainer:   Shad
 
@@ -22,7 +22,7 @@ syn match   keepalivedNumber      "[-+]\=\<\d\+\(\.\d*\)\=\>"
 syn region  keepalivedString      start=+"+ skip=+\\"+ end=+"+
 
 syn keyword keepalivedBoolean on off true false yes no
-syn keyword keepalivedLvsSched rr wrr lc wlc lblc sh dh lblcr sed nq containedin=keepalivedvirtual_serverBlock
+syn keyword keepalivedLvsSched rr wrr lc wlc lblc sh dh fo ovf lblcr sed nq containedin=keepalivedvirtual_serverBlock
 syn keyword keepalivedStatus MASTER BACKUP containedin=keepalivedvrrp_instanceBlock
 syn keyword keepalivedProto TCP SCTP UDP containedin=keepalivedvirtual_serverBlock
 syn keyword keepalivedMethod NAT DR TUN containedin=keepalivedvirtual_serverBlock
@@ -98,10 +98,14 @@ syn keyword keepalivedglobal_defsKeyword                   enable_snmp_rfcv2  co
 syn keyword keepalivedglobal_defsKeyword                   enable_snmp_rfcv3  contained
 syn keyword keepalivedglobal_defsKeyword                        enable_traps  contained
 syn keyword keepalivedglobal_defsKeyword                           lvs_flush  contained
+syn keyword keepalivedglobal_defsKeyword                     lvs_notify_fifo  contained
+syn keyword keepalivedglobal_defsKeyword              lvs_notify_fifo_script  contained
 syn keyword keepalivedglobal_defsKeyword                     lvs_sync_daemon  contained
 syn keyword keepalivedglobal_defsKeyword                        lvs_timeouts  contained
 syn keyword keepalivedglobal_defsKeyword                  notification_email  contained
 syn keyword keepalivedglobal_defsKeyword             notification_email_from  contained
+syn keyword keepalivedglobal_defsKeyword                         notify_fifo  contained
+syn keyword keepalivedglobal_defsKeyword                  notify_fifo_script  contained
 syn keyword keepalivedglobal_defsKeyword                           router_id  contained
 syn keyword keepalivedglobal_defsKeyword                         script_user  contained
 syn keyword keepalivedglobal_defsKeyword                smtp_connect_timeout  contained
@@ -124,6 +128,8 @@ syn keyword keepalivedglobal_defsKeyword           vrrp_lower_prio_no_advert  co
 syn keyword keepalivedglobal_defsKeyword                   vrrp_mcast_group4  contained
 syn keyword keepalivedglobal_defsKeyword                   vrrp_mcast_group6  contained
 syn keyword keepalivedglobal_defsKeyword                        vrrp_no_swap  contained
+syn keyword keepalivedglobal_defsKeyword                    vrrp_notify_fifo  contained
+syn keyword keepalivedglobal_defsKeyword             vrrp_notify_fifo_script  contained
 syn keyword keepalivedglobal_defsKeyword                       vrrp_priority  contained
 syn keyword keepalivedglobal_defsKeyword            vrrp_skip_check_adv_addr  contained
 syn keyword keepalivedglobal_defsKeyword                         vrrp_strict  contained
@@ -181,9 +187,11 @@ syn keyword keepalivedreal_serverDefinition                    real_server conta
 " real_server
 syn keyword keepalivedreal_serverKeyword                  inhibit_on_failure  contained
 syn keyword keepalivedreal_serverKeyword                          lthreshold  contained
+syn keyword keepalivedreal_serverKeyword                          lvs_method  contained
 syn keyword keepalivedreal_serverKeyword                         notify_down  contained
 syn keyword keepalivedreal_serverKeyword                           notify_up  contained
 syn keyword keepalivedreal_serverKeyword                          uthreshold  contained
+syn keyword keepalivedreal_serverKeyword                         virtualhost  contained
 syn keyword keepalivedreal_serverKeyword                              weight  contained
 highlight link keepalivedreal_serverDefinition  Statement
 highlight link keepalivedreal_serverKeyword       Type
@@ -192,6 +200,7 @@ syn keyword keepalivedvirtual_serverKeyword                         sh-fallback 
 syn keyword keepalivedvirtual_serverKeyword                             sh-port  contained
 syn keyword keepalivedvirtual_serverKeyword                        sorry_server  contained
 syn keyword keepalivedvirtual_serverKeyword                sorry_server_inhibit  contained
+syn keyword keepalivedvirtual_serverKeyword             sorry_server_lvs_method  contained
 syn keyword keepalivedvirtual_serverKeyword                         virtualhost  contained
 highlight link keepalivedvirtual_serverDefinition  Statement
 highlight link keepalivedvirtual_serverKeyword       Type
@@ -353,9 +362,11 @@ syn keyword keepalivedurlDefinition                            url contained con
 syn keyword keepalivedurlKeyword                              digest  contained
 syn keyword keepalivedurlKeyword                                path  contained
 syn keyword keepalivedurlKeyword                         status_code  contained
+syn keyword keepalivedurlKeyword                         virtualhost  contained
 highlight link keepalivedurlDefinition Identifier
 highlight link keepalivedurlKeyword Identifier
 
+syn keyword keepalivedHTTP_GETKeyword                         virtualhost  contained
 syn keyword keepalivedHTTP_GETKeyword                              warmup  contained
 highlight link keepalivedHTTP_GETDefinition Identifier
 highlight link keepalivedHTTP_GETKeyword Identifier
