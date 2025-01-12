@@ -1,7 +1,7 @@
 " Vim syntax file
 " Language:     keepalived config http://www.keepalived.org/
 " URL:          https://github.com/shadowwa/keepalived-syntax.vim
-" Version:      2.0.16
+" Version:      2.0.17
 " Author:       Akira Maeda <glidenote@gmail.com>
 " Maintainer:   Shad
 
@@ -87,11 +87,13 @@ syn region keepalivedglobal_defsBlock start="\s*global_defs\ze\s*{" matchgroup=k
 syn keyword keepalivedglobal_defsDefinition                    global_defs contained containedin=keepalivedglobal_defsBlock
 
 " global_defs
+syn keyword keepalivedglobal_defsKeyword                    bfd_cpu_affinity  contained
 syn keyword keepalivedglobal_defsKeyword                         bfd_no_swap  contained
 syn keyword keepalivedglobal_defsKeyword                        bfd_priority  contained
 syn keyword keepalivedglobal_defsKeyword                    bfd_process_name  contained
 syn keyword keepalivedglobal_defsKeyword                    bfd_rlimit_rtime  contained
 syn keyword keepalivedglobal_defsKeyword                     bfd_rt_priority  contained
+syn keyword keepalivedglobal_defsKeyword                checker_cpu_affinity  contained
 syn keyword keepalivedglobal_defsKeyword            checker_log_all_failures  contained
 syn keyword keepalivedglobal_defsKeyword                     checker_no_swap  contained
 syn keyword keepalivedglobal_defsKeyword                    checker_priority  contained
@@ -148,6 +150,7 @@ syn keyword keepalivedglobal_defsKeyword                         smtp_server  co
 syn keyword keepalivedglobal_defsKeyword                         snmp_socket  contained
 syn keyword keepalivedglobal_defsKeyword                               umask  contained
 syn keyword keepalivedglobal_defsKeyword              vrrp_check_unicast_src  contained
+syn keyword keepalivedglobal_defsKeyword                   vrrp_cpu_affinity  contained
 syn keyword keepalivedglobal_defsKeyword                  vrrp_garp_interval  contained
 syn keyword keepalivedglobal_defsKeyword          vrrp_garp_lower_prio_delay  contained
 syn keyword keepalivedglobal_defsKeyword         vrrp_garp_lower_prio_repeat  contained
@@ -336,6 +339,7 @@ syn keyword keepalivedvrrp_instanceKeyword                        track_script  
 syn keyword keepalivedvrrp_instanceKeyword                        track_src_ip  contained
 syn keyword keepalivedvrrp_instanceKeyword                        unicast_peer  contained
 syn keyword keepalivedvrrp_instanceKeyword                      unicast_src_ip  contained
+syn keyword keepalivedvrrp_instanceKeyword                          use_ipvlan  contained
 syn keyword keepalivedvrrp_instanceKeyword                            use_vmac  contained
 syn keyword keepalivedvrrp_instanceKeyword                             version  contained
 syn keyword keepalivedvrrp_instanceKeyword                   virtual_ipaddress  contained
@@ -461,6 +465,8 @@ syn keyword keepalivedHTTP_GETDefinition               HTTP_GET SSL_GET containe
 
 " HTTP_GET
 syn keyword keepalivedHTTP_GETKeyword                          enable_sni  contained
+syn keyword keepalivedHTTP_GETKeyword                       fast_recovery  contained
+syn keyword keepalivedHTTP_GETKeyword                       http_protocol  contained
 syn keyword keepalivedHTTP_GETKeyword                        nb_get_retry  contained
 
 syn region keepalivedurlBlock start="\s*url\ze\s*{" matchgroup=keepalivedDelimiter end="\zs}" contains=keepalivedDelimiter,keepalivedurlKeyword,keepalivedurlDefinition,keepalivedOperator,keepalivedComment,keepalivedNumber,keepalivedString,keepalivedBoolean,ipaddress,ipaddr_cidr,keepalivedGenericBlock contained containedin=keepalivedHTTP_GETBlock
