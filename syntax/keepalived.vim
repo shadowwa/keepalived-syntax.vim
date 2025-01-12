@@ -1,7 +1,7 @@
 " Vim syntax file
 " Language:     keepalived config http://www.keepalived.org/
 " URL:          https://github.com/shadowwa/keepalived-syntax.vim
-" Version:      2.1.0
+" Version:      2.2.0
 " Author:       Akira Maeda <glidenote@gmail.com>
 " Maintainer:   Shad
 
@@ -98,11 +98,13 @@ syn keyword keepalivedglobal_defsKeyword                checker_cpu_affinity  co
 syn keyword keepalivedglobal_defsKeyword            checker_log_all_failures  contained
 syn keyword keepalivedglobal_defsKeyword                     checker_no_swap  contained
 syn keyword keepalivedglobal_defsKeyword                    checker_priority  contained
+syn keyword keepalivedglobal_defsKeyword                checker_process_name  contained
 syn keyword keepalivedglobal_defsKeyword                checker_rlimit_rtime  contained
 syn keyword keepalivedglobal_defsKeyword               checker_rlimit_rttime  contained
 syn keyword keepalivedglobal_defsKeyword                 checker_rt_priority  contained
 syn keyword keepalivedglobal_defsKeyword                   dbus_service_name  contained
 syn keyword keepalivedglobal_defsKeyword                   default_interface  contained
+syn keyword keepalivedglobal_defsKeyword                  disable_local_igmp  contained
 syn keyword keepalivedglobal_defsKeyword                  dynamic_interfaces  contained
 syn keyword keepalivedglobal_defsKeyword                         enable_dbus  contained
 syn keyword keepalivedglobal_defsKeyword              enable_script_security  contained
@@ -113,8 +115,10 @@ syn keyword keepalivedglobal_defsKeyword                   enable_snmp_rfcv2  co
 syn keyword keepalivedglobal_defsKeyword                   enable_snmp_rfcv3  contained
 syn keyword keepalivedglobal_defsKeyword                    enable_snmp_vrrp  contained
 syn keyword keepalivedglobal_defsKeyword                        enable_traps  contained
+syn keyword keepalivedglobal_defsKeyword                       include_check  contained
 syn keyword keepalivedglobal_defsKeyword                   log_unknown_vrids  contained
 syn keyword keepalivedglobal_defsKeyword                           lvs_flush  contained
+syn keyword keepalivedglobal_defsKeyword                   lvs_flush_on_stop  contained
 syn keyword keepalivedglobal_defsKeyword                    lvs_flush_onstop  contained
 syn keyword keepalivedglobal_defsKeyword            lvs_netlink_cmd_rcv_bufs  contained
 syn keyword keepalivedglobal_defsKeyword      lvs_netlink_cmd_rcv_bufs_force  contained
@@ -142,6 +146,8 @@ syn keyword keepalivedglobal_defsKeyword      process_monitor_rcv_bufs_force  co
 syn keyword keepalivedglobal_defsKeyword                        process_name  contained
 syn keyword keepalivedglobal_defsKeyword                       process_names  contained
 syn keyword keepalivedglobal_defsKeyword                         random_seed  contained
+syn keyword keepalivedglobal_defsKeyword                 reload_check_config  contained
+syn keyword keepalivedglobal_defsKeyword                         reload_file  contained
 syn keyword keepalivedglobal_defsKeyword                       reload_repeat  contained
 syn keyword keepalivedglobal_defsKeyword                    reload_time_file  contained
 syn keyword keepalivedglobal_defsKeyword                           router_id  contained
@@ -158,7 +164,10 @@ syn keyword keepalivedglobal_defsKeyword                         smtp_server  co
 syn keyword keepalivedglobal_defsKeyword                         snmp_socket  contained
 syn keyword keepalivedglobal_defsKeyword                      startup_script  contained
 syn keyword keepalivedglobal_defsKeyword              startup_script_timeout  contained
+syn keyword keepalivedglobal_defsKeyword                tmp_config_directory  contained
 syn keyword keepalivedglobal_defsKeyword                               umask  contained
+syn keyword keepalivedglobal_defsKeyword                    vmac_addr_prefix  contained
+syn keyword keepalivedglobal_defsKeyword                         vmac_prefix  contained
 syn keyword keepalivedglobal_defsKeyword              vrrp_check_unicast_src  contained
 syn keyword keepalivedglobal_defsKeyword                   vrrp_cpu_affinity  contained
 syn keyword keepalivedglobal_defsKeyword                  vrrp_garp_interval  contained
@@ -195,6 +204,7 @@ syn keyword keepalivedglobal_defsKeyword            vrrp_skip_check_adv_addr  co
 syn keyword keepalivedglobal_defsKeyword                  vrrp_startup_delay  contained
 syn keyword keepalivedglobal_defsKeyword                         vrrp_strict  contained
 syn keyword keepalivedglobal_defsKeyword                        vrrp_version  contained
+syn keyword keepalivedglobal_defsKeyword                vrrp_vmac_garp_intvl  contained
 highlight link keepalivedglobal_defsDefinition  Statement
 highlight link keepalivedglobal_defsKeyword       Type
 
@@ -358,12 +368,14 @@ syn keyword keepalivedvrrp_instanceKeyword                      unicast_src_ip  
 syn keyword keepalivedvrrp_instanceKeyword                         unicast_ttl  contained
 syn keyword keepalivedvrrp_instanceKeyword                          use_ipvlan  contained
 syn keyword keepalivedvrrp_instanceKeyword                            use_vmac  contained
+syn keyword keepalivedvrrp_instanceKeyword                       use_vmac_addr  contained
 syn keyword keepalivedvrrp_instanceKeyword                             version  contained
 syn keyword keepalivedvrrp_instanceKeyword                   virtual_ipaddress  contained
 syn keyword keepalivedvrrp_instanceKeyword          virtual_ipaddress_excluded  contained
 syn keyword keepalivedvrrp_instanceKeyword                   virtual_router_id  contained
 syn keyword keepalivedvrrp_instanceKeyword                      virtual_routes  contained
 syn keyword keepalivedvrrp_instanceKeyword                       virtual_rules  contained
+syn keyword keepalivedvrrp_instanceKeyword                     vmac_garp_intvl  contained
 syn keyword keepalivedvrrp_instanceKeyword                      vmac_xmit_base  contained
 highlight link keepalivedvrrp_instanceDefinition  Statement
 highlight link keepalivedvrrp_instanceKeyword       Type
@@ -395,6 +407,7 @@ syn keyword keepalivedvrrp_sync_groupKeyword                              notify
 syn keyword keepalivedvrrp_sync_groupKeyword                       notify_backup  contained
 syn keyword keepalivedvrrp_sync_groupKeyword                        notify_fault  contained
 syn keyword keepalivedvrrp_sync_groupKeyword                       notify_master  contained
+syn keyword keepalivedvrrp_sync_groupKeyword             notify_priority_changes  contained
 syn keyword keepalivedvrrp_sync_groupKeyword                         notify_stop  contained
 syn keyword keepalivedvrrp_sync_groupKeyword                          smtp_alert  contained
 syn keyword keepalivedvrrp_sync_groupKeyword          sync_group_tracking_weight  contained
@@ -479,6 +492,9 @@ syn region keepalivedUDP_CHECKBlock start="\s*UDP_CHECK\ze\s*{" matchgroup=keepa
 syn keyword keepalivedUDP_CHECKDefinition                      UDP_CHECK contained containedin=keepalivedUDP_CHECKBlock
 
 " UDP_CHECK
+syn keyword keepalivedUDP_CHECKKeyword                    max_reply_length  contained
+syn keyword keepalivedUDP_CHECKKeyword                    min_reply_length  contained
+syn keyword keepalivedUDP_CHECKKeyword                             payload  contained
 syn keyword keepalivedUDP_CHECKKeyword                       require_reply  contained
 highlight link keepalivedUDP_CHECKDefinition Identifier
 highlight link keepalivedUDP_CHECKKeyword Identifier
