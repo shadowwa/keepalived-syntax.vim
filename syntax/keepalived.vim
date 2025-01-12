@@ -1,7 +1,7 @@
 " Vim syntax file
 " Language:     keepalived config http://www.keepalived.org/
 " URL:          https://github.com/shadowwa/keepalived-syntax.vim
-" Version:      2.0.7
+" Version:      2.0.9
 " Author:       Akira Maeda <glidenote@gmail.com>
 " Maintainer:   Shad
 
@@ -132,6 +132,7 @@ syn keyword keepalivedglobal_defsKeyword                smtp_connect_timeout  co
 syn keyword keepalivedglobal_defsKeyword                      smtp_helo_name  contained
 syn keyword keepalivedglobal_defsKeyword                         smtp_server  contained
 syn keyword keepalivedglobal_defsKeyword                         snmp_socket  contained
+syn keyword keepalivedglobal_defsKeyword                               umask  contained
 syn keyword keepalivedglobal_defsKeyword              vrrp_check_unicast_src  contained
 syn keyword keepalivedglobal_defsKeyword                  vrrp_garp_interval  contained
 syn keyword keepalivedglobal_defsKeyword          vrrp_garp_lower_prio_delay  contained
