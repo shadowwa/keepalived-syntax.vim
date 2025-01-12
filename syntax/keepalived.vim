@@ -1,7 +1,7 @@
 " Vim syntax file
 " Language:     keepalived config http://www.keepalived.org/
 " URL:          https://github.com/shadowwa/keepalived-syntax.vim
-" Version:      2.0.15
+" Version:      2.0.16
 " Author:       Akira Maeda <glidenote@gmail.com>
 " Maintainer:   Shad
 
@@ -89,6 +89,7 @@ syn keyword keepalivedglobal_defsDefinition                    global_defs conta
 " global_defs
 syn keyword keepalivedglobal_defsKeyword                         bfd_no_swap  contained
 syn keyword keepalivedglobal_defsKeyword                        bfd_priority  contained
+syn keyword keepalivedglobal_defsKeyword                    bfd_process_name  contained
 syn keyword keepalivedglobal_defsKeyword                    bfd_rlimit_rtime  contained
 syn keyword keepalivedglobal_defsKeyword                     bfd_rt_priority  contained
 syn keyword keepalivedglobal_defsKeyword            checker_log_all_failures  contained
@@ -108,6 +109,7 @@ syn keyword keepalivedglobal_defsKeyword                   enable_snmp_rfcv2  co
 syn keyword keepalivedglobal_defsKeyword                   enable_snmp_rfcv3  contained
 syn keyword keepalivedglobal_defsKeyword                    enable_snmp_vrrp  contained
 syn keyword keepalivedglobal_defsKeyword                        enable_traps  contained
+syn keyword keepalivedglobal_defsKeyword                   log_unknown_vrids  contained
 syn keyword keepalivedglobal_defsKeyword                           lvs_flush  contained
 syn keyword keepalivedglobal_defsKeyword                    lvs_flush_onstop  contained
 syn keyword keepalivedglobal_defsKeyword            lvs_netlink_cmd_rcv_bufs  contained
@@ -116,6 +118,7 @@ syn keyword keepalivedglobal_defsKeyword        lvs_netlink_monitor_rcv_bufs  co
 syn keyword keepalivedglobal_defsKeyword  lvs_netlink_monitor_rcv_bufs_force  contained
 syn keyword keepalivedglobal_defsKeyword                     lvs_notify_fifo  contained
 syn keyword keepalivedglobal_defsKeyword              lvs_notify_fifo_script  contained
+syn keyword keepalivedglobal_defsKeyword                    lvs_process_name  contained
 syn keyword keepalivedglobal_defsKeyword                     lvs_sync_daemon  contained
 syn keyword keepalivedglobal_defsKeyword                        lvs_timeouts  contained
 syn keyword keepalivedglobal_defsKeyword                            nftables  contained
@@ -130,6 +133,8 @@ syn keyword keepalivedglobal_defsKeyword                         notify_fifo  co
 syn keyword keepalivedglobal_defsKeyword                  notify_fifo_script  contained
 syn keyword keepalivedglobal_defsKeyword            process_monitor_rcv_bufs  contained
 syn keyword keepalivedglobal_defsKeyword      process_monitor_rcv_bufs_force  contained
+syn keyword keepalivedglobal_defsKeyword                        process_name  contained
+syn keyword keepalivedglobal_defsKeyword                       process_names  contained
 syn keyword keepalivedglobal_defsKeyword                         random_seed  contained
 syn keyword keepalivedglobal_defsKeyword                           router_id  contained
 syn keyword keepalivedglobal_defsKeyword                    rs_init_notifies  contained
@@ -165,7 +170,9 @@ syn keyword keepalivedglobal_defsKeyword vrrp_netlink_monitor_rcv_bufs_force  co
 syn keyword keepalivedglobal_defsKeyword                        vrrp_no_swap  contained
 syn keyword keepalivedglobal_defsKeyword                    vrrp_notify_fifo  contained
 syn keyword keepalivedglobal_defsKeyword             vrrp_notify_fifo_script  contained
+syn keyword keepalivedglobal_defsKeyword        vrrp_notify_priority_changes  contained
 syn keyword keepalivedglobal_defsKeyword                       vrrp_priority  contained
+syn keyword keepalivedglobal_defsKeyword                   vrrp_process_name  contained
 syn keyword keepalivedglobal_defsKeyword                   vrrp_rlimit_rtime  contained
 syn keyword keepalivedglobal_defsKeyword                    vrrp_rt_priority  contained
 syn keyword keepalivedglobal_defsKeyword             vrrp_rx_bufs_multiplier  contained
@@ -310,6 +317,7 @@ syn keyword keepalivedvrrp_instanceKeyword                       notify_backup  
 syn keyword keepalivedvrrp_instanceKeyword                        notify_fault  contained
 syn keyword keepalivedvrrp_instanceKeyword                       notify_master  contained
 syn keyword keepalivedvrrp_instanceKeyword          notify_master_rx_lower_pri  contained
+syn keyword keepalivedvrrp_instanceKeyword             notify_priority_changes  contained
 syn keyword keepalivedvrrp_instanceKeyword                         notify_stop  contained
 syn keyword keepalivedvrrp_instanceKeyword                old_unicast_checksum  contained
 syn keyword keepalivedvrrp_instanceKeyword                             preempt  contained
@@ -394,9 +402,13 @@ syn keyword keepalivedvrrp_track_processDefinition             vrrp_track_proces
 
 " vrrp_track_process
 syn keyword keepalivedvrrp_track_processKeyword                               delay  contained
+syn keyword keepalivedvrrp_track_processKeyword                          fork_delay  contained
 syn keyword keepalivedvrrp_track_processKeyword                        full_command  contained
+syn keyword keepalivedvrrp_track_processKeyword                         param_match  contained
 syn keyword keepalivedvrrp_track_processKeyword                             process  contained
 syn keyword keepalivedvrrp_track_processKeyword                              quorum  contained
+syn keyword keepalivedvrrp_track_processKeyword                          quorum_max  contained
+syn keyword keepalivedvrrp_track_processKeyword                     terminate_delay  contained
 syn keyword keepalivedvrrp_track_processKeyword                              weight  contained
 highlight link keepalivedvrrp_track_processDefinition  Statement
 highlight link keepalivedvrrp_track_processKeyword       Type
