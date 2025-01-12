@@ -1,8 +1,9 @@
 " Vim syntax file
 " Language:     keepalived config http://www.keepalived.org/
-" URL:          https://github.com/glidenote/keepalived-syntax.vim
-" Version:      1.0.0
-" Maintainer:   Akira Maeda <glidenote@gmail.com>
+" URL:          https://github.com/shadowwa/keepalived-syntax.vim
+" Version:      1.2.10
+" Author:       Akira Maeda <glidenote@gmail.com>
+" Maintainer:   Shad
 
 if exists("b:current_syntax")
   finish
