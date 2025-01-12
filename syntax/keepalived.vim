@@ -1,7 +1,7 @@
 " Vim syntax file
 " Language:     keepalived config http://www.keepalived.org/
 " URL:          https://github.com/shadowwa/keepalived-syntax.vim
-" Version:      2.2.5
+" Version:      2.2.8
 " Author:       Akira Maeda <glidenote@gmail.com>
 " Maintainer:   Shad
 
@@ -119,6 +119,7 @@ syn keyword keepalivedglobal_defsKeyword                    enable_snmp_vrrp  co
 syn keyword keepalivedglobal_defsKeyword                        enable_traps  contained
 syn keyword keepalivedglobal_defsKeyword    fifo_write_vrrp_states_on_reload  contained
 syn keyword keepalivedglobal_defsKeyword                       include_check  contained
+syn keyword keepalivedglobal_defsKeyword                        json_version  contained
 syn keyword keepalivedglobal_defsKeyword                   log_unknown_vrids  contained
 syn keyword keepalivedglobal_defsKeyword                           lvs_flush  contained
 syn keyword keepalivedglobal_defsKeyword                   lvs_flush_on_stop  contained
@@ -172,6 +173,7 @@ syn keyword keepalivedglobal_defsKeyword                      startup_script  co
 syn keyword keepalivedglobal_defsKeyword              startup_script_timeout  contained
 syn keyword keepalivedglobal_defsKeyword                tmp_config_directory  contained
 syn keyword keepalivedglobal_defsKeyword                               umask  contained
+syn keyword keepalivedglobal_defsKeyword                   v3_checksum_as_v2  contained
 syn keyword keepalivedglobal_defsKeyword                    vmac_addr_prefix  contained
 syn keyword keepalivedglobal_defsKeyword                         vmac_prefix  contained
 syn keyword keepalivedglobal_defsKeyword              vrrp_check_unicast_src  contained
@@ -353,6 +355,7 @@ syn keyword keepalivedvrrp_instanceKeyword                        mcast_dst_ip  
 syn keyword keepalivedvrrp_instanceKeyword                        mcast_src_ip  contained
 syn keyword keepalivedvrrp_instanceKeyword                         native_ipv6  contained
 syn keyword keepalivedvrrp_instanceKeyword                           no_accept  contained
+syn keyword keepalivedvrrp_instanceKeyword                no_virtual_ipaddress  contained
 syn keyword keepalivedvrrp_instanceKeyword                           nopreempt  contained
 syn keyword keepalivedvrrp_instanceKeyword                              notify  contained
 syn keyword keepalivedvrrp_instanceKeyword                       notify_backup  contained
@@ -371,6 +374,7 @@ syn keyword keepalivedvrrp_instanceKeyword                 skip_check_adv_addr  
 syn keyword keepalivedvrrp_instanceKeyword                          smtp_alert  contained
 syn keyword keepalivedvrrp_instanceKeyword                               state  contained
 syn keyword keepalivedvrrp_instanceKeyword                         strict_mode  contained
+syn keyword keepalivedvrrp_instanceKeyword                timer_expired_backup  contained
 syn keyword keepalivedvrrp_instanceKeyword                           track_bfd  contained
 syn keyword keepalivedvrrp_instanceKeyword                          track_file  contained
 syn keyword keepalivedvrrp_instanceKeyword                     track_interface  contained
@@ -384,6 +388,7 @@ syn keyword keepalivedvrrp_instanceKeyword                         unicast_ttl  
 syn keyword keepalivedvrrp_instanceKeyword                          use_ipvlan  contained
 syn keyword keepalivedvrrp_instanceKeyword                            use_vmac  contained
 syn keyword keepalivedvrrp_instanceKeyword                       use_vmac_addr  contained
+syn keyword keepalivedvrrp_instanceKeyword                   v3_checksum_as_v2  contained
 syn keyword keepalivedvrrp_instanceKeyword                             version  contained
 syn keyword keepalivedvrrp_instanceKeyword                   virtual_ipaddress  contained
 syn keyword keepalivedvrrp_instanceKeyword          virtual_ipaddress_excluded  contained
@@ -525,6 +530,7 @@ syn keyword keepalivedHTTP_GETKeyword                          enable_sni  conta
 syn keyword keepalivedHTTP_GETKeyword                       fast_recovery  contained
 syn keyword keepalivedHTTP_GETKeyword                       http_protocol  contained
 syn keyword keepalivedHTTP_GETKeyword                        nb_get_retry  contained
+syn keyword keepalivedHTTP_GETKeyword                       tls_compliant  contained
 
 syn region keepalivedurlBlock start="\s*url\ze\s*{" matchgroup=keepalivedDelimiter end="\zs}" contains=keepalivedDelimiter,keepalivedurlKeyword,keepalivedurlDefinition,keepalivedOperator,keepalivedComment,keepalivedNumber,keepalivedString,keepalivedBoolean,ipaddress,ipaddr_cidr,keepalivedGenericBlock contained containedin=keepalivedHTTP_GETBlock
 syn keyword keepalivedurlDefinition                            url contained containedin=keepalivedurlBlock
@@ -539,6 +545,7 @@ syn keyword keepalivedurlKeyword                      regex_no_match  contained
 syn keyword keepalivedurlKeyword                       regex_options  contained
 syn keyword keepalivedurlKeyword                         regex_stack  contained
 syn keyword keepalivedurlKeyword                         status_code  contained
+syn keyword keepalivedurlKeyword                       tls_compliant  contained
 syn keyword keepalivedurlKeyword                         virtualhost  contained
 highlight link keepalivedurlDefinition Identifier
 highlight link keepalivedurlKeyword Identifier
