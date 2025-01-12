@@ -1,7 +1,7 @@
 " Vim syntax file
 " Language:     keepalived config http://www.keepalived.org/
 " URL:          https://github.com/shadowwa/keepalived-syntax.vim
-" Version:      2.0.12
+" Version:      2.0.13
 " Author:       Akira Maeda <glidenote@gmail.com>
 " Maintainer:   Shad
 
@@ -175,6 +175,7 @@ highlight link keepalivedglobal_defsDefinition  Statement
 highlight link keepalivedglobal_defsKeyword       Type
 
 syn keyword keepalivedrootKeyword                            instance           
+syn keyword keepalivedrootKeyword                 linkbeat_interfaces           
 syn keyword keepalivedrootKeyword                linkbeat_use_polling           
 syn keyword keepalivedrootKeyword               namespace_with_ipsets           
 syn keyword keepalivedrootKeyword                       net_namespace           
@@ -205,6 +206,7 @@ syn keyword keepalivedvirtual_serverDefinition                 virtual_server co
 
 " virtual_server
 syn keyword keepalivedvirtual_serverKeyword                               alpha  contained
+syn keyword keepalivedvirtual_serverKeyword                     connect_timeout  contained
 syn keyword keepalivedvirtual_serverKeyword                  delay_before_retry  contained
 syn keyword keepalivedvirtual_serverKeyword                          delay_loop  contained
 syn keyword keepalivedvirtual_serverKeyword                              flag-1  contained
@@ -234,6 +236,7 @@ syn keyword keepalivedreal_serverDefinition                    real_server conta
 
 " real_server
 syn keyword keepalivedreal_serverKeyword                               alpha  contained
+syn keyword keepalivedreal_serverKeyword                     connect_timeout  contained
 syn keyword keepalivedreal_serverKeyword                  delay_before_retry  contained
 syn keyword keepalivedreal_serverKeyword                          delay_loop  contained
 syn keyword keepalivedreal_serverKeyword                  inhibit_on_failure  contained
