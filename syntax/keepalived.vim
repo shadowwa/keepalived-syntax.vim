@@ -1,7 +1,7 @@
 " Vim syntax file
 " Language:     keepalived config http://www.keepalived.org/
 " URL:          https://github.com/shadowwa/keepalived-syntax.vim
-" Version:      2.3.0
+" Version:      2.3.2
 " Author:       Akira Maeda <glidenote@gmail.com>
 " Maintainer:   Shad
 
@@ -120,6 +120,8 @@ syn keyword keepalivedglobal_defsKeyword                    enable_snmp_vrrp  co
 syn keyword keepalivedglobal_defsKeyword                        enable_traps  contained
 syn keyword keepalivedglobal_defsKeyword    fifo_write_vrrp_states_on_reload  contained
 syn keyword keepalivedglobal_defsKeyword                       include_check  contained
+syn keyword keepalivedglobal_defsKeyword                     iproute_etc_dir  contained
+syn keyword keepalivedglobal_defsKeyword                     iproute_usr_dir  contained
 syn keyword keepalivedglobal_defsKeyword                        json_version  contained
 syn keyword keepalivedglobal_defsKeyword                   log_unknown_vrids  contained
 syn keyword keepalivedglobal_defsKeyword                           lvs_flush  contained
@@ -378,6 +380,7 @@ syn keyword keepalivedvrrp_instanceKeyword                 skip_check_adv_addr  
 syn keyword keepalivedvrrp_instanceKeyword                          smtp_alert  contained
 syn keyword keepalivedvrrp_instanceKeyword                               state  contained
 syn keyword keepalivedvrrp_instanceKeyword                         strict_mode  contained
+syn keyword keepalivedvrrp_instanceKeyword                thread_timer_expired  contained
 syn keyword keepalivedvrrp_instanceKeyword                timer_expired_backup  contained
 syn keyword keepalivedvrrp_instanceKeyword                           track_bfd  contained
 syn keyword keepalivedvrrp_instanceKeyword                          track_file  contained
