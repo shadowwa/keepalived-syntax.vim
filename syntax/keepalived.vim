@@ -1,7 +1,7 @@
 " Vim syntax file
 " Language:     keepalived config http://www.keepalived.org/
 " URL:          https://github.com/shadowwa/keepalived-syntax.vim
-" Version:      1.3.2
+" Version:      1.3.5
 " Author:       Akira Maeda <glidenote@gmail.com>
 " Maintainer:   Shad
 
@@ -117,6 +117,7 @@ syn keyword keepalivedglobal_defsKeyword            vrrp_garp_master_refresh  co
 syn keyword keepalivedglobal_defsKeyword     vrrp_garp_master_refresh_repeat  contained
 syn keyword keepalivedglobal_defsKeyword             vrrp_garp_master_repeat  contained
 syn keyword keepalivedglobal_defsKeyword                   vrrp_gna_interval  contained
+syn keyword keepalivedglobal_defsKeyword        vrrp_higher_prio_send_advert  contained
 syn keyword keepalivedglobal_defsKeyword                         vrrp_ipsets  contained
 syn keyword keepalivedglobal_defsKeyword                       vrrp_iptables  contained
 syn keyword keepalivedglobal_defsKeyword           vrrp_lower_prio_no_advert  contained
@@ -221,6 +222,7 @@ syn keyword keepalivedvrrp_instanceKeyword                   garp_master_delay  
 syn keyword keepalivedvrrp_instanceKeyword                 garp_master_refresh  contained
 syn keyword keepalivedvrrp_instanceKeyword          garp_master_refresh_repeat  contained
 syn keyword keepalivedvrrp_instanceKeyword                  garp_master_repeat  contained
+syn keyword keepalivedvrrp_instanceKeyword             higher_prio_send_advert  contained
 syn keyword keepalivedvrrp_instanceKeyword                           interface  contained
 syn keyword keepalivedvrrp_instanceKeyword                lower_prio_no_advert  contained
 syn keyword keepalivedvrrp_instanceKeyword           lvs_sync_daemon_interface  contained
