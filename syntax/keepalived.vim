@@ -1,7 +1,7 @@
 " Vim syntax file
 " Language:     keepalived config http://www.keepalived.org/
 " URL:          https://github.com/shadowwa/keepalived-syntax.vim
-" Version:      2.0.0
+" Version:      2.0.3
 " Author:       Akira Maeda <glidenote@gmail.com>
 " Maintainer:   Shad
 
@@ -157,6 +157,8 @@ syn keyword keepalivedglobal_defsKeyword             vrrp_notify_fifo_script  co
 syn keyword keepalivedglobal_defsKeyword                       vrrp_priority  contained
 syn keyword keepalivedglobal_defsKeyword                   vrrp_rlimit_rtime  contained
 syn keyword keepalivedglobal_defsKeyword                    vrrp_rt_priority  contained
+syn keyword keepalivedglobal_defsKeyword             vrrp_rx_bufs_multiplier  contained
+syn keyword keepalivedglobal_defsKeyword                 vrrp_rx_bufs_policy  contained
 syn keyword keepalivedglobal_defsKeyword            vrrp_skip_check_adv_addr  contained
 syn keyword keepalivedglobal_defsKeyword                         vrrp_strict  contained
 syn keyword keepalivedglobal_defsKeyword                        vrrp_version  contained
@@ -178,6 +180,15 @@ syn keyword keepalivedstatic_routesDefinition                  static_routes con
 
 highlight link keepalivedstatic_routesDefinition  Statement
 syn keyword keepalivedrootKeyword                        static_rules           
+
+syn region keepalivedtrack_groupBlock start="\s*track_group\ze\s*\w*\s*{" matchgroup=keepalivedDelimiter end="\zs}" contains=keepalivedDelimiter,keepalivedtrack_groupKeyword,keepalivedtrack_groupDefinition,keepalivedOperator,keepalivedComment,keepalivedNumber,keepalivedString,keepalivedBoolean,ipaddress,ipaddr_cidr,keepalivedGenericBlock
+syn keyword keepalivedtrack_groupDefinition                    track_group contained containedin=keepalivedtrack_groupBlock
+
+" track_group
+syn keyword keepalivedtrack_groupKeyword                               group  contained
+highlight link keepalivedtrack_groupDefinition  Statement
+highlight link keepalivedtrack_groupKeyword       Type
+
 syn keyword keepalivedrootKeyword                         use_pid_dir           
 
 syn region keepalivedvirtual_serverBlock start="\s*virtual_server\ze\s*[a-zA-Z0-9_.:]*\s*\w*\s*{" matchgroup=keepalivedDelimiter end="\zs}" contains=keepalivedDelimiter,keepalivedvirtual_serverKeyword,keepalivedvirtual_serverDefinition,keepalivedOperator,keepalivedComment,keepalivedNumber,keepalivedString,keepalivedBoolean,ipaddress,ipaddr_cidr,keepalivedGenericBlock
@@ -271,6 +282,7 @@ syn keyword keepalivedvrrp_instanceKeyword          garp_master_refresh_repeat  
 syn keyword keepalivedvrrp_instanceKeyword                  garp_master_repeat  contained
 syn keyword keepalivedvrrp_instanceKeyword             higher_prio_send_advert  contained
 syn keyword keepalivedvrrp_instanceKeyword                           interface  contained
+syn keyword keepalivedvrrp_instanceKeyword                  kernel_rx_buf_size  contained
 syn keyword keepalivedvrrp_instanceKeyword                linkbeat_use_polling  contained
 syn keyword keepalivedvrrp_instanceKeyword                lower_prio_no_advert  contained
 syn keyword keepalivedvrrp_instanceKeyword           lvs_sync_daemon_interface  contained
@@ -461,7 +473,7 @@ syn keyword keepalivedCommonCheckerKeyword                          retry  conta
 syn keyword keepalivedCommonCheckerKeyword                         warmup  contained
 highlight link keepalivedCommonCheckerKeyword Identifier
 
-syn region keepalivedGenericBlock matchgroup=keepalivedDelimiter start="\(^\s*\(SSL\|garp_group\|global_defs\|static_ipaddress\|static_routes\|virtual_server\|real_server\|vrrp_instance\|authentication\|vrrp_script\|vrrp_sync_group\|vrrp_track_file\|MISC_CHECK\|SMTP_CHECK\|host\|TCP_CHECK\|HTTP_GET\|SSL_GET\|url\|DNS_CHECK\|BFD_CHECK\)\(\s\+[a-zA-Z0-9_.:]\+\)\?\(\s\+\w\+\)\?\s*\)\@<!{" end="}" transparent
+syn region keepalivedGenericBlock matchgroup=keepalivedDelimiter start="\(^\s*\(SSL\|garp_group\|global_defs\|static_ipaddress\|static_routes\|track_group\|virtual_server\|real_server\|vrrp_instance\|authentication\|vrrp_script\|vrrp_sync_group\|vrrp_track_file\|MISC_CHECK\|SMTP_CHECK\|host\|TCP_CHECK\|HTTP_GET\|SSL_GET\|url\|DNS_CHECK\|BFD_CHECK\)\(\s\+[a-zA-Z0-9_.:]\+\)\?\(\s\+\w\+\)\?\s*\)\@<!{" end="}" transparent
 
 
 " highlight
