@@ -12,19 +12,19 @@ setlocal iskeyword+=.
 setlocal iskeyword+=/
 setlocal iskeyword+=:
 
+syntax sync fromstart
+
 syn match   keepalivedDelimiter   "[{}()\[\];,]"
 syn match   keepalivedOperator    "[~!=|&\*\+\<\>]"
 syn match   keepalivedComment     "\([#!].*\)"
 syn match   keepalivedNumber      "[-+]\=\<\d\+\(\.\d*\)\=\>"
 syn region  keepalivedString      start=+"+ skip=+\\"+ end=+"+
-syn region  keepalivedBlock start=+^+ end=+{+ contains=keepalivedComment,keepalivedDefinitionBlock,keepalivedDefinitionImportant,keepalivedDefinition oneline
 
-syn keyword keepalivedBoolean on
-syn keyword keepalivedBoolean off
-syn keyword keepalivedLvsSched rr wrr lc wlc lblc sh dh lblcr sed nq
-syn keyword keepalivedStatus MASTER BACKUP
-syn keyword keepalivedProto TCP SCTP UDP
-syn keyword keepalivedMethod NAT DR TUN
+syn keyword keepalivedBoolean on off
+syn keyword keepalivedLvsSched rr wrr lc wlc lblc sh dh lblcr sed nq containedin=keepalivedvirtual_serverBlock
+syn keyword keepalivedStatus MASTER BACKUP containedin=keepalivedvrrp_instanceBlock
+syn keyword keepalivedProto TCP SCTP UDP containedin=keepalivedvirtual_serverBlock
+syn keyword keepalivedMethod NAT DR TUN containedin=keepalivedvirtual_serverBlock
 
 " IPv4
 syn match ipaddress excludenl /\v\s(25[0-4]|2[0-4]\d|1\d{1,2}|[1-9]\d|[1-9])\.(25[0-5]|2[0-4]\d|1\d\d|\d{1,2})\.(25[0-5]|2[0-4]\d|1\d\d|\d{1,2})\.(25[0-5]|2[0-4]\d|1\d\d|\d{1,2})/ nextgroup=ipaddr_cidr,subnetmask contained containedin=keepalivedGenericBlock
@@ -48,108 +48,276 @@ highlight link ipaddress Constant
 highlight link ipaddr_cidr Constant
 highlight link subnetmask Constant
 
-syn keyword keepalivedDefinitionBlock global_defs         contained
-syn keyword keepalivedDefinitionBlock virtual_server      contained
-syn keyword keepalivedDefinitionBlock fwmark              contained
-syn keyword keepalivedDefinitionBlock vrrp_sync_group     contained
-syn keyword keepalivedDefinitionBlock vrrp_instance       contained
-syn keyword keepalivedDefinitionBlock static_address      contained
-syn keyword keepalivedDefinitionBlock static_routes       contained
-syn keyword keepalivedDefinitionBlock vrrp_script         contained
+syn match keepalivedDirective /^\s*@\w\+/ containedin=ALL
+highlight link keepalivedDirective PreProc
 
-syn keyword keepalivedDefinitionImportant notification_email
-syn keyword keepalivedDefinitionImportant notification_email_from
-syn keyword keepalivedDefinitionImportant smtp_server
-syn keyword keepalivedDefinitionImportant smtp_connect_timeout
-syn keyword keepalivedDefinitionImportant lvs_id
-syn keyword keepalivedDefinitionImportant delay_loop
-syn keyword keepalivedDefinitionImportant lb_algo
-syn keyword keepalivedDefinitionImportant lb_kind
-syn keyword keepalivedDefinitionImportant lvs_sched
-syn keyword keepalivedDefinitionImportant lvs_method
-syn keyword keepalivedDefinitionImportant persistence_timeout
-syn keyword keepalivedDefinitionImportant persistence_granularity
-syn keyword keepalivedDefinitionImportant ha_suspend
-syn keyword keepalivedDefinitionImportant virtualhost
-syn keyword keepalivedDefinitionImportant protocol
-syn keyword keepalivedDefinitionImportant sorry_server
-syn keyword keepalivedDefinitionImportant real_server
-syn keyword keepalivedDefinitionImportant state
-syn keyword keepalivedDefinitionImportant interface
-syn keyword keepalivedDefinitionImportant mcast_src_ip
-syn keyword keepalivedDefinitionImportant unicast_src_ip
-syn keyword keepalivedDefinitionImportant unicast_peer
-syn keyword keepalivedDefinitionImportant lvs_sync_daemon_inteface
-syn keyword keepalivedDefinitionImportant virtual_router_id
-syn keyword keepalivedDefinitionImportant priority
-syn keyword keepalivedDefinitionImportant advert_int
-syn keyword keepalivedDefinitionImportant smtp_alert
-syn keyword keepalivedDefinitionImportant authentication
-syn keyword keepalivedDefinitionImportant virtual_ipaddress
-syn keyword keepalivedDefinitionImportant virtual_ipaddress_excluded
-syn keyword keepalivedDefinitionImportant notify_master
-syn keyword keepalivedDefinitionImportant notify_backup
-syn keyword keepalivedDefinitionImportant notify_fault
-syn keyword keepalivedDefinitionImportant notify
-syn keyword keepalivedDefinitionImportant vrrp_sync_group
-syn keyword keepalivedDefinitionImportant vrrp_mcast_group4
-syn keyword keepalivedDefinitionImportant vrrp_mcast_group6
-syn keyword keepalivedDefinitionImportant linkbeat_use_polling
-syn keyword keepalivedDefinitionImportant script
-syn keyword keepalivedDefinitionImportant interval
-syn keyword keepalivedDefinitionImportant fall
-syn keyword keepalivedDefinitionImportant rise
-syn keyword keepalivedDefinitionImportant track_interface
-syn keyword keepalivedDefinitionImportant track_script
-syn keyword keepalivedDefinitionImportant dont_track_primary
-syn keyword keepalivedDefinitionImportant virtual_routes
-syn keyword keepalivedDefinitionImportant nopreempt
-syn keyword keepalivedDefinitionImportant preempt_delay
+syn keyword keepalivedInclude include includer includem includew includeb includea
+highlight link keepalivedInclude Include
+" add include_check ?
 
-syn keyword keepalivedDefinition weight
-syn keyword keepalivedDefinition TCP_CHECK
-syn keyword keepalivedDefinition MISC_CHECK
-syn keyword keepalivedDefinition SMTP_CHECK
-syn keyword keepalivedDefinition HTTP_GET
-syn keyword keepalivedDefinition SSL_GET
-syn keyword keepalivedDefinition url
-syn keyword keepalivedDefinition connect_ip
-syn keyword keepalivedDefinition connect_port
-syn keyword keepalivedDefinition connect_timeout
-syn keyword keepalivedDefinition nb_get_retry
-syn keyword keepalivedDefinition delay_before_retry
-syn keyword keepalivedDefinition router_id
-syn keyword keepalivedDefinition state
-syn keyword keepalivedDefinition interface
-syn keyword keepalivedDefinition virtual_router_id
-syn keyword keepalivedDefinition priority
-syn keyword keepalivedDefinition advert_int
-syn keyword keepalivedDefinition nat_mask
-syn keyword keepalivedDefinition auth_type
-syn keyword keepalivedDefinition auth_pass
-syn keyword keepalivedDefinition use_vmac
-syn keyword keepalivedDefinition vmac_xmit_base
-syn keyword keepalivedDefinition native_ipv6
-syn keyword keepalivedDefinition blackhole
-syn keyword keepalivedDefinition debug
-syn keyword keepalivedDefinition alpha
-syn keyword keepalivedDefinition omega
-syn keyword keepalivedDefinition quorom
-syn keyword keepalivedDefinition quorom_up
-syn keyword keepalivedDefinition quorom_down
-syn keyword keepalivedDefinition hysteresis
-syn keyword keepalivedDefinition inhibit_on_failure
-syn keyword keepalivedDefinition host
-syn keyword keepalivedDefinition retry
-syn keyword keepalivedDefinition delay_before_retry
-syn keyword keepalivedDefinition helo_name
+" root
 
-syn keyword keepalivedVariable  misc_path
-syn keyword keepalivedVariable  misc_timeout
-syn keyword keepalivedVariable  misc_dynamic
-syn keyword keepalivedVariable  path
-syn keyword keepalivedVariable  digest
-syn keyword keepalivedVariable  status_code
+syn region keepalivedSSLBlock start="\s*SSL\ze\s*{" matchgroup=keepalivedDelimiter end="\zs}" contains=keepalivedDelimiter,keepalivedSSLKeyword,keepalivedSSLDefinition,keepalivedOperator,keepalivedComment,keepalivedNumber,keepalivedString,keepalivedBoolean,ipaddress,ipaddr_cidr,keepalivedGenericBlock
+syn keyword keepalivedSSLDefinition                            SSL contained containedin=keepalivedSSLBlock
+
+" SSL
+syn keyword keepalivedSSLKeyword                                  ca  contained
+syn keyword keepalivedSSLKeyword                         certificate  contained
+syn keyword keepalivedSSLKeyword                                 key  contained
+syn keyword keepalivedSSLKeyword                            password  contained
+highlight link keepalivedSSLDefinition  Statement
+highlight link keepalivedSSLKeyword       Type
+
+
+syn region keepalivedglobal_defsBlock start="\s*global_defs\ze\s*{" matchgroup=keepalivedDelimiter end="\zs}" contains=keepalivedDelimiter,keepalivedglobal_defsKeyword,keepalivedglobal_defsDefinition,keepalivedOperator,keepalivedComment,keepalivedNumber,keepalivedString,keepalivedBoolean,ipaddress,ipaddr_cidr,keepalivedGenericBlock
+syn keyword keepalivedglobal_defsDefinition                    global_defs contained containedin=keepalivedglobal_defsBlock
+
+" global_defs
+syn keyword keepalivedglobal_defsKeyword                        enable_traps  contained
+syn keyword keepalivedglobal_defsKeyword                  notification_email  contained
+syn keyword keepalivedglobal_defsKeyword             notification_email_from  contained
+syn keyword keepalivedglobal_defsKeyword                          plugin_dir  contained
+syn keyword keepalivedglobal_defsKeyword                           router_id  contained
+syn keyword keepalivedglobal_defsKeyword                smtp_connect_timeout  contained
+syn keyword keepalivedglobal_defsKeyword                         smtp_server  contained
+syn keyword keepalivedglobal_defsKeyword                   vrrp_mcast_group4  contained
+syn keyword keepalivedglobal_defsKeyword                   vrrp_mcast_group6  contained
+highlight link keepalivedglobal_defsDefinition  Statement
+highlight link keepalivedglobal_defsKeyword       Type
+
+syn keyword keepalivedrootKeyword                linkbeat_use_polling           
+
+syn region keepalivedstatic_ipaddressBlock start="\s*static_ipaddress\ze\s*{" matchgroup=keepalivedDelimiter end="\zs}" contains=keepalivedDelimiter,keepalivedstatic_ipaddressKeyword,keepalivedstatic_ipaddressDefinition,keepalivedOperator,keepalivedComment,keepalivedNumber,keepalivedString,keepalivedBoolean,ipaddress,ipaddr_cidr,keepalivedGenericBlock
+syn keyword keepalivedstatic_ipaddressDefinition               static_ipaddress contained containedin=keepalivedstatic_ipaddressBlock
+
+highlight link keepalivedstatic_ipaddressDefinition  Statement
+
+syn region keepalivedstatic_routesBlock start="\s*static_routes\ze\s*{" matchgroup=keepalivedDelimiter end="\zs}" contains=keepalivedDelimiter,keepalivedstatic_routesKeyword,keepalivedstatic_routesDefinition,keepalivedOperator,keepalivedComment,keepalivedNumber,keepalivedString,keepalivedBoolean,ipaddress,ipaddr_cidr,keepalivedGenericBlock
+syn keyword keepalivedstatic_routesDefinition                  static_routes contained containedin=keepalivedstatic_routesBlock
+
+highlight link keepalivedstatic_routesDefinition  Statement
+
+syn region keepalivedvirtual_serverBlock start="\s*virtual_server\ze\s*[a-zA-Z0-9_.:]*\s*\w*\s*{" matchgroup=keepalivedDelimiter end="\zs}" contains=keepalivedDelimiter,keepalivedvirtual_serverKeyword,keepalivedvirtual_serverDefinition,keepalivedOperator,keepalivedComment,keepalivedNumber,keepalivedString,keepalivedBoolean,ipaddress,ipaddr_cidr,keepalivedGenericBlock
+syn keyword keepalivedvirtual_serverDefinition                 virtual_server contained containedin=keepalivedvirtual_serverBlock
+
+" virtual_server
+syn keyword keepalivedvirtual_serverKeyword                               alpha  contained
+syn keyword keepalivedvirtual_serverKeyword                          delay_loop  contained
+syn keyword keepalivedvirtual_serverKeyword                          ha_suspend  contained
+syn keyword keepalivedvirtual_serverKeyword                          hysteresis  contained
+syn keyword keepalivedvirtual_serverKeyword                             lb_algo  contained
+syn keyword keepalivedvirtual_serverKeyword                             lb_kind  contained
+syn keyword keepalivedvirtual_serverKeyword                          lvs_method  contained
+syn keyword keepalivedvirtual_serverKeyword                           lvs_sched  contained
+syn keyword keepalivedvirtual_serverKeyword                            nat_mask  contained
+syn keyword keepalivedvirtual_serverKeyword                               omega  contained
+syn keyword keepalivedvirtual_serverKeyword                                 ops  contained
+syn keyword keepalivedvirtual_serverKeyword             persistence_granularity  contained
+syn keyword keepalivedvirtual_serverKeyword                 persistence_timeout  contained
+syn keyword keepalivedvirtual_serverKeyword                            protocol  contained
+syn keyword keepalivedvirtual_serverKeyword                              quorum  contained
+syn keyword keepalivedvirtual_serverKeyword                         quorum_down  contained
+syn keyword keepalivedvirtual_serverKeyword                           quorum_up  contained
+
+syn region keepalivedreal_serverBlock start="\s*real_server\ze\s*[a-zA-Z0-9_.:]*\s*\w*\s*{" matchgroup=keepalivedDelimiter end="\zs}" contains=keepalivedDelimiter,keepalivedreal_serverKeyword,keepalivedreal_serverDefinition,keepalivedOperator,keepalivedComment,keepalivedNumber,keepalivedString,keepalivedBoolean,ipaddress,ipaddr_cidr,keepalivedGenericBlock contained containedin=keepalivedvirtual_serverBlock
+syn keyword keepalivedreal_serverDefinition                    real_server contained containedin=keepalivedreal_serverBlock
+
+" real_server
+syn keyword keepalivedreal_serverKeyword                  inhibit_on_failure  contained
+syn keyword keepalivedreal_serverKeyword                          lthreshold  contained
+syn keyword keepalivedreal_serverKeyword                         notify_down  contained
+syn keyword keepalivedreal_serverKeyword                           notify_up  contained
+syn keyword keepalivedreal_serverKeyword                          uthreshold  contained
+syn keyword keepalivedreal_serverKeyword                              weight  contained
+highlight link keepalivedreal_serverDefinition  Statement
+highlight link keepalivedreal_serverKeyword       Type
+
+syn keyword keepalivedvirtual_serverKeyword                        sorry_server  contained
+syn keyword keepalivedvirtual_serverKeyword                         virtualhost  contained
+highlight link keepalivedvirtual_serverDefinition  Statement
+highlight link keepalivedvirtual_serverKeyword       Type
+
+syn keyword keepalivedrootKeyword                virtual_server_group           
+
+syn region keepalivedvrrp_instanceBlock start="\s*vrrp_instance\ze\s*\w*\s*{" matchgroup=keepalivedDelimiter end="\zs}" contains=keepalivedDelimiter,keepalivedvrrp_instanceKeyword,keepalivedvrrp_instanceDefinition,keepalivedOperator,keepalivedComment,keepalivedNumber,keepalivedString,keepalivedBoolean,ipaddress,ipaddr_cidr,keepalivedGenericBlock
+syn keyword keepalivedvrrp_instanceDefinition                  vrrp_instance contained containedin=keepalivedvrrp_instanceBlock
+
+" vrrp_instance
+syn keyword keepalivedvrrp_instanceKeyword                          advert_int  contained
+
+syn region keepalivedauthenticationBlock start="\s*authentication\ze\s*{" matchgroup=keepalivedDelimiter end="\zs}" contains=keepalivedDelimiter,keepalivedauthenticationKeyword,keepalivedauthenticationDefinition,keepalivedOperator,keepalivedComment,keepalivedNumber,keepalivedString,keepalivedBoolean,ipaddress,ipaddr_cidr,keepalivedGenericBlock contained containedin=keepalivedvrrp_instanceBlock
+syn keyword keepalivedauthenticationDefinition                 authentication contained containedin=keepalivedauthenticationBlock
+
+" authentication
+syn keyword keepalivedauthenticationKeyword                           auth_pass  contained
+syn keyword keepalivedauthenticationKeyword                           auth_type  contained
+highlight link keepalivedauthenticationDefinition  Statement
+highlight link keepalivedauthenticationKeyword       Type
+
+syn keyword keepalivedvrrp_instanceKeyword                               debug  contained
+syn keyword keepalivedvrrp_instanceKeyword                  dont_track_primary  contained
+syn keyword keepalivedvrrp_instanceKeyword                   garp_master_delay  contained
+syn keyword keepalivedvrrp_instanceKeyword                 garp_master_refresh  contained
+syn keyword keepalivedvrrp_instanceKeyword                           interface  contained
+syn keyword keepalivedvrrp_instanceKeyword           lvs_sync_daemon_interface  contained
+syn keyword keepalivedvrrp_instanceKeyword                        mcast_src_ip  contained
+syn keyword keepalivedvrrp_instanceKeyword                         native_ipv6  contained
+syn keyword keepalivedvrrp_instanceKeyword                           nopreempt  contained
+syn keyword keepalivedvrrp_instanceKeyword                              notify  contained
+syn keyword keepalivedvrrp_instanceKeyword                       notify_backup  contained
+syn keyword keepalivedvrrp_instanceKeyword                        notify_fault  contained
+syn keyword keepalivedvrrp_instanceKeyword                       notify_master  contained
+syn keyword keepalivedvrrp_instanceKeyword                         notify_stop  contained
+syn keyword keepalivedvrrp_instanceKeyword                             preempt  contained
+syn keyword keepalivedvrrp_instanceKeyword                       preempt_delay  contained
+syn keyword keepalivedvrrp_instanceKeyword                            priority  contained
+syn keyword keepalivedvrrp_instanceKeyword                          smtp_alert  contained
+syn keyword keepalivedvrrp_instanceKeyword                               state  contained
+syn keyword keepalivedvrrp_instanceKeyword                     track_interface  contained
+syn keyword keepalivedvrrp_instanceKeyword                        track_script  contained
+syn keyword keepalivedvrrp_instanceKeyword                        unicast_peer  contained
+syn keyword keepalivedvrrp_instanceKeyword                      unicast_src_ip  contained
+syn keyword keepalivedvrrp_instanceKeyword                            use_vmac  contained
+syn keyword keepalivedvrrp_instanceKeyword                   virtual_ipaddress  contained
+syn keyword keepalivedvrrp_instanceKeyword          virtual_ipaddress_excluded  contained
+syn keyword keepalivedvrrp_instanceKeyword                   virtual_router_id  contained
+syn keyword keepalivedvrrp_instanceKeyword                      virtual_routes  contained
+syn keyword keepalivedvrrp_instanceKeyword                      vmac_xmit_base  contained
+highlight link keepalivedvrrp_instanceDefinition  Statement
+highlight link keepalivedvrrp_instanceKeyword       Type
+
+
+syn region keepalivedvrrp_scriptBlock start="\s*vrrp_script\ze\s*\w*\s*{" matchgroup=keepalivedDelimiter end="\zs}" contains=keepalivedDelimiter,keepalivedvrrp_scriptKeyword,keepalivedvrrp_scriptDefinition,keepalivedOperator,keepalivedComment,keepalivedNumber,keepalivedString,keepalivedBoolean,ipaddress,ipaddr_cidr,keepalivedGenericBlock
+syn keyword keepalivedvrrp_scriptDefinition                    vrrp_script contained containedin=keepalivedvrrp_scriptBlock
+
+" vrrp_script
+syn keyword keepalivedvrrp_scriptKeyword                                fall  contained
+syn keyword keepalivedvrrp_scriptKeyword                            interval  contained
+syn keyword keepalivedvrrp_scriptKeyword                                rise  contained
+syn keyword keepalivedvrrp_scriptKeyword                              script  contained
+syn keyword keepalivedvrrp_scriptKeyword                             timeout  contained
+syn keyword keepalivedvrrp_scriptKeyword                              weight  contained
+highlight link keepalivedvrrp_scriptDefinition  Statement
+highlight link keepalivedvrrp_scriptKeyword       Type
+
+
+syn region keepalivedvrrp_sync_groupBlock start="\s*vrrp_sync_group\ze\s*\w*\s*{" matchgroup=keepalivedDelimiter end="\zs}" contains=keepalivedDelimiter,keepalivedvrrp_sync_groupKeyword,keepalivedvrrp_sync_groupDefinition,keepalivedOperator,keepalivedComment,keepalivedNumber,keepalivedString,keepalivedBoolean,ipaddress,ipaddr_cidr,keepalivedGenericBlock
+syn keyword keepalivedvrrp_sync_groupDefinition                vrrp_sync_group contained containedin=keepalivedvrrp_sync_groupBlock
+
+" vrrp_sync_group
+syn keyword keepalivedvrrp_sync_groupKeyword                     global_tracking  contained
+syn keyword keepalivedvrrp_sync_groupKeyword                               group  contained
+syn keyword keepalivedvrrp_sync_groupKeyword                              notify  contained
+syn keyword keepalivedvrrp_sync_groupKeyword                       notify_backup  contained
+syn keyword keepalivedvrrp_sync_groupKeyword                        notify_fault  contained
+syn keyword keepalivedvrrp_sync_groupKeyword                       notify_master  contained
+syn keyword keepalivedvrrp_sync_groupKeyword                          smtp_alert  contained
+highlight link keepalivedvrrp_sync_groupDefinition  Statement
+highlight link keepalivedvrrp_sync_groupKeyword       Type
+
+highlight link keepalivedrootKeyword  Statement
+
+
+syn region keepalivedMISC_CHECKBlock start="\s*MISC_CHECK\ze\s*{" matchgroup=keepalivedDelimiter end="\zs}" contains=keepalivedDelimiter,keepalivedMISC_CHECKKeyword,keepalivedMISC_CHECKDefinition,keepalivedOperator,keepalivedComment,keepalivedNumber,keepalivedString,keepalivedBoolean,ipaddress,ipaddr_cidr,keepalivedGenericBlock contained containedin=keepalivedreal_serverBlock
+syn keyword keepalivedMISC_CHECKDefinition                     MISC_CHECK contained containedin=keepalivedMISC_CHECKBlock
+
+" MISC_CHECK
+syn keyword keepalivedMISC_CHECKKeyword                        misc_dynamic  contained
+syn keyword keepalivedMISC_CHECKKeyword                           misc_path  contained
+syn keyword keepalivedMISC_CHECKKeyword                        misc_timeout  contained
+highlight link keepalivedMISC_CHECKDefinition Identifier
+highlight link keepalivedMISC_CHECKKeyword Identifier
+
+
+
+syn region keepalivedSMTP_CHECKBlock start="\s*SMTP_CHECK\ze\s*{" matchgroup=keepalivedDelimiter end="\zs}" contains=keepalivedDelimiter,keepalivedSMTP_CHECKKeyword,keepalivedSMTP_CHECKDefinition,keepalivedOperator,keepalivedComment,keepalivedNumber,keepalivedString,keepalivedBoolean,ipaddress,ipaddr_cidr,keepalivedGenericBlock contained containedin=keepalivedreal_serverBlock
+syn keyword keepalivedSMTP_CHECKDefinition                     SMTP_CHECK contained containedin=keepalivedSMTP_CHECKBlock
+
+" SMTP_CHECK
+syn keyword keepalivedSMTP_CHECKKeyword                     connect_timeout  contained
+syn keyword keepalivedSMTP_CHECKKeyword                  delay_before_retry  contained
+syn keyword keepalivedSMTP_CHECKKeyword                           helo_name  contained
+
+syn region keepalivedhostBlock start="\s*host\ze\s*{" matchgroup=keepalivedDelimiter end="\zs}" contains=keepalivedDelimiter,keepalivedhostKeyword,keepalivedhostDefinition,keepalivedOperator,keepalivedComment,keepalivedNumber,keepalivedString,keepalivedBoolean,ipaddress,ipaddr_cidr,keepalivedGenericBlock contained containedin=keepalivedSMTP_CHECKBlock
+syn keyword keepalivedhostDefinition                           host contained containedin=keepalivedhostBlock
+
+" host
+syn keyword keepalivedhostKeyword                              bindto  contained
+syn keyword keepalivedhostKeyword                          connect_ip  contained
+syn keyword keepalivedhostKeyword                        connect_port  contained
+highlight link keepalivedhostDefinition Identifier
+highlight link keepalivedhostKeyword Identifier
+
+syn keyword keepalivedSMTP_CHECKKeyword                               retry  contained
+highlight link keepalivedSMTP_CHECKDefinition Identifier
+highlight link keepalivedSMTP_CHECKKeyword Identifier
+
+
+
+syn region keepalivedTCP_CHECKBlock start="\s*TCP_CHECK\ze\s*{" matchgroup=keepalivedDelimiter end="\zs}" contains=keepalivedDelimiter,keepalivedTCP_CHECKKeyword,keepalivedTCP_CHECKDefinition,keepalivedOperator,keepalivedComment,keepalivedNumber,keepalivedString,keepalivedBoolean,ipaddress,ipaddr_cidr,keepalivedGenericBlock contained containedin=keepalivedreal_serverBlock
+syn keyword keepalivedTCP_CHECKDefinition                      TCP_CHECK contained containedin=keepalivedTCP_CHECKBlock
+
+" TCP_CHECK
+syn keyword keepalivedTCP_CHECKKeyword                              bindto  contained
+syn keyword keepalivedTCP_CHECKKeyword                        connect_port  contained
+syn keyword keepalivedTCP_CHECKKeyword                     connect_timeout  contained
+highlight link keepalivedTCP_CHECKDefinition Identifier
+highlight link keepalivedTCP_CHECKKeyword Identifier
+
+
+
+syn region keepalivedHTTP_GETBlock start="\s*HTTP_GET\|SSL_GET\ze\s*{" matchgroup=keepalivedDelimiter end="\zs}" contains=keepalivedDelimiter,keepalivedHTTP_GETKeyword,keepalivedHTTP_GETDefinition,keepalivedOperator,keepalivedComment,keepalivedNumber,keepalivedString,keepalivedBoolean,ipaddress,ipaddr_cidr,keepalivedGenericBlock contained containedin=keepalivedreal_serverBlock
+syn keyword keepalivedHTTP_GETDefinition               HTTP_GET SSL_GET contained containedin=keepalivedHTTP_GETBlock
+
+" HTTP_GET
+syn keyword keepalivedHTTP_GETKeyword                              bindto  contained
+syn keyword keepalivedHTTP_GETKeyword                        connect_port  contained
+syn keyword keepalivedHTTP_GETKeyword                     connect_timeout  contained
+syn keyword keepalivedHTTP_GETKeyword                  delay_before_retry  contained
+syn keyword keepalivedHTTP_GETKeyword                        nb_get_retry  contained
+
+syn region keepalivedurlBlock start="\s*url\ze\s*{" matchgroup=keepalivedDelimiter end="\zs}" contains=keepalivedDelimiter,keepalivedurlKeyword,keepalivedurlDefinition,keepalivedOperator,keepalivedComment,keepalivedNumber,keepalivedString,keepalivedBoolean,ipaddress,ipaddr_cidr,keepalivedGenericBlock contained containedin=keepalivedHTTP_GETBlock
+syn keyword keepalivedurlDefinition                            url contained containedin=keepalivedurlBlock
+
+" url
+syn keyword keepalivedurlKeyword                              digest  contained
+syn keyword keepalivedurlKeyword                                path  contained
+syn keyword keepalivedurlKeyword                         status_code  contained
+highlight link keepalivedurlDefinition Identifier
+highlight link keepalivedurlKeyword Identifier
+
+highlight link keepalivedHTTP_GETDefinition Identifier
+highlight link keepalivedHTTP_GETKeyword Identifier
+
+
+syn region keepalivedSSL_GETBlock start="\s*SSL_GET\ze\s*{" matchgroup=keepalivedDelimiter end="\zs}" contains=keepalivedDelimiter,keepalivedSSL_GETKeyword,keepalivedSSL_GETDefinition,keepalivedOperator,keepalivedComment,keepalivedNumber,keepalivedString,keepalivedBoolean,ipaddress,ipaddr_cidr,keepalivedGenericBlock contained containedin=keepalivedreal_serverBlock
+syn keyword keepalivedSSL_GETDefinition                        SSL_GET contained containedin=keepalivedSSL_GETBlock
+
+" SSL_GET
+syn keyword keepalivedSSL_GETKeyword                              bindto  contained
+syn keyword keepalivedSSL_GETKeyword                        connect_port  contained
+syn keyword keepalivedSSL_GETKeyword                     connect_timeout  contained
+syn keyword keepalivedSSL_GETKeyword                  delay_before_retry  contained
+syn keyword keepalivedSSL_GETKeyword                        nb_get_retry  contained
+
+syn region keepalivedurlBlock start="\s*url\ze\s*{" matchgroup=keepalivedDelimiter end="\zs}" contains=keepalivedDelimiter,keepalivedurlKeyword,keepalivedurlDefinition,keepalivedOperator,keepalivedComment,keepalivedNumber,keepalivedString,keepalivedBoolean,ipaddress,ipaddr_cidr,keepalivedGenericBlock contained containedin=keepalivedSSL_GETBlock
+syn keyword keepalivedurlDefinition                            url contained containedin=keepalivedurlBlock
+
+" url
+syn keyword keepalivedurlKeyword                              digest  contained
+syn keyword keepalivedurlKeyword                                path  contained
+syn keyword keepalivedurlKeyword                         status_code  contained
+highlight link keepalivedurlDefinition Identifier
+highlight link keepalivedurlKeyword Identifier
+
+highlight link keepalivedSSL_GETDefinition Identifier
+highlight link keepalivedSSL_GETKeyword Identifier
+
+
+
+highlight link keepalivedCommonCheckerKeyword Identifier
+syn region keepalivedGenericBlock matchgroup=keepalivedDelimiter start="\(^\s*\(SSL\|global_defs\|static_ipaddress\|static_routes\|virtual_server\|real_server\|vrrp_instance\|authentication\|vrrp_script\|vrrp_sync_group\|MISC_CHECK\|SMTP_CHECK\|host\|TCP_CHECK\|HTTP_GET\|SSL_GET\|url\|SSL_GET\|url\)\(\s\+[a-zA-Z0-9_.:]\+\)\?\(\s\+\w\+\)\?\s*\)\@<!{" end="}" transparent
+
 
 " highlight
 hi link keepalivedDelimiter           Delimiter
@@ -159,7 +327,6 @@ hi link keepalivedNumber              Number
 hi link keepalivedVariable            PreProc
 hi link keepalivedBlock               Normal
 hi link keepalivedString              String
-
 hi link keepalivedBoolean             Boolean
 hi link keepalivedLvsSched            Constant
 hi link keepalivedStatus              Constant
