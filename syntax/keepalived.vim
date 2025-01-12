@@ -1,7 +1,7 @@
 " Vim syntax file
 " Language:     keepalived config http://www.keepalived.org/
 " URL:          https://github.com/shadowwa/keepalived-syntax.vim
-" Version:      2.0.20
+" Version:      2.1.0
 " Author:       Akira Maeda <glidenote@gmail.com>
 " Maintainer:   Shad
 
@@ -92,12 +92,14 @@ syn keyword keepalivedglobal_defsKeyword                         bfd_no_swap  co
 syn keyword keepalivedglobal_defsKeyword                        bfd_priority  contained
 syn keyword keepalivedglobal_defsKeyword                    bfd_process_name  contained
 syn keyword keepalivedglobal_defsKeyword                    bfd_rlimit_rtime  contained
+syn keyword keepalivedglobal_defsKeyword                   bfd_rlimit_rttime  contained
 syn keyword keepalivedglobal_defsKeyword                     bfd_rt_priority  contained
 syn keyword keepalivedglobal_defsKeyword                checker_cpu_affinity  contained
 syn keyword keepalivedglobal_defsKeyword            checker_log_all_failures  contained
 syn keyword keepalivedglobal_defsKeyword                     checker_no_swap  contained
 syn keyword keepalivedglobal_defsKeyword                    checker_priority  contained
 syn keyword keepalivedglobal_defsKeyword                checker_rlimit_rtime  contained
+syn keyword keepalivedglobal_defsKeyword               checker_rlimit_rttime  contained
 syn keyword keepalivedglobal_defsKeyword                 checker_rt_priority  contained
 syn keyword keepalivedglobal_defsKeyword                   dbus_service_name  contained
 syn keyword keepalivedglobal_defsKeyword                   default_interface  contained
@@ -123,6 +125,8 @@ syn keyword keepalivedglobal_defsKeyword              lvs_notify_fifo_script  co
 syn keyword keepalivedglobal_defsKeyword                    lvs_process_name  contained
 syn keyword keepalivedglobal_defsKeyword                     lvs_sync_daemon  contained
 syn keyword keepalivedglobal_defsKeyword                        lvs_timeouts  contained
+syn keyword keepalivedglobal_defsKeyword                   max_auto_priority  contained
+syn keyword keepalivedglobal_defsKeyword             min_auto_priority_delay  contained
 syn keyword keepalivedglobal_defsKeyword                            nftables  contained
 syn keyword keepalivedglobal_defsKeyword                   nftables_counters  contained
 syn keyword keepalivedglobal_defsKeyword                    nftables_ifindex  contained
@@ -138,9 +142,13 @@ syn keyword keepalivedglobal_defsKeyword      process_monitor_rcv_bufs_force  co
 syn keyword keepalivedglobal_defsKeyword                        process_name  contained
 syn keyword keepalivedglobal_defsKeyword                       process_names  contained
 syn keyword keepalivedglobal_defsKeyword                         random_seed  contained
+syn keyword keepalivedglobal_defsKeyword                       reload_repeat  contained
+syn keyword keepalivedglobal_defsKeyword                    reload_time_file  contained
 syn keyword keepalivedglobal_defsKeyword                           router_id  contained
 syn keyword keepalivedglobal_defsKeyword                    rs_init_notifies  contained
 syn keyword keepalivedglobal_defsKeyword                         script_user  contained
+syn keyword keepalivedglobal_defsKeyword                     shutdown_script  contained
+syn keyword keepalivedglobal_defsKeyword             shutdown_script_timeout  contained
 syn keyword keepalivedglobal_defsKeyword                          smtp_alert  contained
 syn keyword keepalivedglobal_defsKeyword                  smtp_alert_checker  contained
 syn keyword keepalivedglobal_defsKeyword                     smtp_alert_vrrp  contained
@@ -148,6 +156,8 @@ syn keyword keepalivedglobal_defsKeyword                smtp_connect_timeout  co
 syn keyword keepalivedglobal_defsKeyword                      smtp_helo_name  contained
 syn keyword keepalivedglobal_defsKeyword                         smtp_server  contained
 syn keyword keepalivedglobal_defsKeyword                         snmp_socket  contained
+syn keyword keepalivedglobal_defsKeyword                      startup_script  contained
+syn keyword keepalivedglobal_defsKeyword              startup_script_timeout  contained
 syn keyword keepalivedglobal_defsKeyword                               umask  contained
 syn keyword keepalivedglobal_defsKeyword              vrrp_check_unicast_src  contained
 syn keyword keepalivedglobal_defsKeyword                   vrrp_cpu_affinity  contained
@@ -177,6 +187,7 @@ syn keyword keepalivedglobal_defsKeyword        vrrp_notify_priority_changes  co
 syn keyword keepalivedglobal_defsKeyword                       vrrp_priority  contained
 syn keyword keepalivedglobal_defsKeyword                   vrrp_process_name  contained
 syn keyword keepalivedglobal_defsKeyword                   vrrp_rlimit_rtime  contained
+syn keyword keepalivedglobal_defsKeyword                  vrrp_rlimit_rttime  contained
 syn keyword keepalivedglobal_defsKeyword                    vrrp_rt_priority  contained
 syn keyword keepalivedglobal_defsKeyword             vrrp_rx_bufs_multiplier  contained
 syn keyword keepalivedglobal_defsKeyword                 vrrp_rx_bufs_policy  contained
@@ -192,6 +203,7 @@ syn keyword keepalivedrootKeyword                 linkbeat_interfaces
 syn keyword keepalivedrootKeyword                linkbeat_use_polling           
 syn keyword keepalivedrootKeyword               namespace_with_ipsets           
 syn keyword keepalivedrootKeyword                       net_namespace           
+syn keyword keepalivedrootKeyword                  net_namespace_ipvs           
 
 syn region keepalivedstatic_ipaddressBlock start="\s*static_ipaddress\ze\s*{" matchgroup=keepalivedDelimiter end="\zs}" contains=keepalivedDelimiter,keepalivedstatic_ipaddressKeyword,keepalivedstatic_ipaddressDefinition,keepalivedOperator,keepalivedComment,keepalivedNumber,keepalivedString,keepalivedBoolean,ipaddress,ipaddr_cidr,keepalivedGenericBlock
 syn keyword keepalivedstatic_ipaddressDefinition               static_ipaddress contained containedin=keepalivedstatic_ipaddressBlock
@@ -299,6 +311,7 @@ syn keyword keepalivedauthenticationKeyword                           auth_type 
 highlight link keepalivedauthenticationDefinition  Statement
 highlight link keepalivedauthenticationKeyword       Type
 
+syn keyword keepalivedvrrp_instanceKeyword                   check_unicast_src  contained
 syn keyword keepalivedvrrp_instanceKeyword                               debug  contained
 syn keyword keepalivedvrrp_instanceKeyword                  dont_track_primary  contained
 syn keyword keepalivedvrrp_instanceKeyword               garp_lower_prio_delay  contained
@@ -319,6 +332,7 @@ syn keyword keepalivedvrrp_instanceKeyword                           no_accept  
 syn keyword keepalivedvrrp_instanceKeyword                           nopreempt  contained
 syn keyword keepalivedvrrp_instanceKeyword                              notify  contained
 syn keyword keepalivedvrrp_instanceKeyword                       notify_backup  contained
+syn keyword keepalivedvrrp_instanceKeyword                      notify_deleted  contained
 syn keyword keepalivedvrrp_instanceKeyword                        notify_fault  contained
 syn keyword keepalivedvrrp_instanceKeyword                       notify_master  contained
 syn keyword keepalivedvrrp_instanceKeyword          notify_master_rx_lower_pri  contained
@@ -341,6 +355,7 @@ syn keyword keepalivedvrrp_instanceKeyword                        track_script  
 syn keyword keepalivedvrrp_instanceKeyword                        track_src_ip  contained
 syn keyword keepalivedvrrp_instanceKeyword                        unicast_peer  contained
 syn keyword keepalivedvrrp_instanceKeyword                      unicast_src_ip  contained
+syn keyword keepalivedvrrp_instanceKeyword                         unicast_ttl  contained
 syn keyword keepalivedvrrp_instanceKeyword                          use_ipvlan  contained
 syn keyword keepalivedvrrp_instanceKeyword                            use_vmac  contained
 syn keyword keepalivedvrrp_instanceKeyword                             version  contained
@@ -390,17 +405,6 @@ syn keyword keepalivedvrrp_sync_groupKeyword                       track_process
 syn keyword keepalivedvrrp_sync_groupKeyword                        track_script  contained
 highlight link keepalivedvrrp_sync_groupDefinition  Statement
 highlight link keepalivedvrrp_sync_groupKeyword       Type
-
-
-syn region keepalivedvrrp_track_fileBlock start="\s*vrrp_track_file\ze\s*{" matchgroup=keepalivedDelimiter end="\zs}" contains=keepalivedDelimiter,keepalivedvrrp_track_fileKeyword,keepalivedvrrp_track_fileDefinition,keepalivedOperator,keepalivedComment,keepalivedNumber,keepalivedString,keepalivedBoolean,ipaddress,ipaddr_cidr,keepalivedGenericBlock
-syn keyword keepalivedvrrp_track_fileDefinition                vrrp_track_file contained containedin=keepalivedvrrp_track_fileBlock
-
-" vrrp_track_file
-syn keyword keepalivedvrrp_track_fileKeyword                                file  contained
-syn keyword keepalivedvrrp_track_fileKeyword                           init_file  contained
-syn keyword keepalivedvrrp_track_fileKeyword                              weight  contained
-highlight link keepalivedvrrp_track_fileDefinition  Statement
-highlight link keepalivedvrrp_track_fileKeyword       Type
 
 
 syn region keepalivedvrrp_track_processBlock start="\s*vrrp_track_process\ze\s*\w*\s*{" matchgroup=keepalivedDelimiter end="\zs}" contains=keepalivedDelimiter,keepalivedvrrp_track_processKeyword,keepalivedvrrp_track_processDefinition,keepalivedOperator,keepalivedComment,keepalivedNumber,keepalivedString,keepalivedBoolean,ipaddress,ipaddr_cidr,keepalivedGenericBlock
@@ -462,6 +466,25 @@ highlight link keepalivedTCP_CHECKKeyword Identifier
 
 
 
+syn region keepalivedPING_CHECKBlock start="\s*PING_CHECK\ze\s*{" matchgroup=keepalivedDelimiter end="\zs}" contains=keepalivedDelimiter,keepalivedPING_CHECKKeyword,keepalivedPING_CHECKDefinition,keepalivedOperator,keepalivedComment,keepalivedNumber,keepalivedString,keepalivedBoolean,ipaddress,ipaddr_cidr,keepalivedGenericBlock,keepalivedCommonCheckerKeyword contained containedin=keepalivedreal_serverBlock
+syn keyword keepalivedPING_CHECKDefinition                     PING_CHECK contained containedin=keepalivedPING_CHECKBlock
+
+" PING_CHECK
+highlight link keepalivedPING_CHECKDefinition Identifier
+highlight link keepalivedPING_CHECKKeyword Identifier
+
+
+
+syn region keepalivedUDP_CHECKBlock start="\s*UDP_CHECK\ze\s*{" matchgroup=keepalivedDelimiter end="\zs}" contains=keepalivedDelimiter,keepalivedUDP_CHECKKeyword,keepalivedUDP_CHECKDefinition,keepalivedOperator,keepalivedComment,keepalivedNumber,keepalivedString,keepalivedBoolean,ipaddress,ipaddr_cidr,keepalivedGenericBlock,keepalivedCommonCheckerKeyword contained containedin=keepalivedreal_serverBlock
+syn keyword keepalivedUDP_CHECKDefinition                      UDP_CHECK contained containedin=keepalivedUDP_CHECKBlock
+
+" UDP_CHECK
+syn keyword keepalivedUDP_CHECKKeyword                       require_reply  contained
+highlight link keepalivedUDP_CHECKDefinition Identifier
+highlight link keepalivedUDP_CHECKKeyword Identifier
+
+
+
 syn region keepalivedHTTP_GETBlock start="\s*HTTP_GET\|SSL_GET\ze\s*{" matchgroup=keepalivedDelimiter end="\zs}" contains=keepalivedDelimiter,keepalivedHTTP_GETKeyword,keepalivedHTTP_GETDefinition,keepalivedOperator,keepalivedComment,keepalivedNumber,keepalivedString,keepalivedBoolean,ipaddress,ipaddr_cidr,keepalivedGenericBlock,keepalivedCommonCheckerKeyword contained containedin=keepalivedreal_serverBlock
 syn keyword keepalivedHTTP_GETDefinition               HTTP_GET SSL_GET contained containedin=keepalivedHTTP_GETBlock
 
@@ -506,6 +529,17 @@ highlight link keepalivedDNS_CHECKKeyword Identifier
 
 
 
+syn region keepalivedFILE_CHECKBlock start="\s*FILE_CHECK\ze\s*{" matchgroup=keepalivedDelimiter end="\zs}" contains=keepalivedDelimiter,keepalivedFILE_CHECKKeyword,keepalivedFILE_CHECKDefinition,keepalivedOperator,keepalivedComment,keepalivedNumber,keepalivedString,keepalivedBoolean,ipaddress,ipaddr_cidr,keepalivedGenericBlock contained containedin=keepalivedreal_serverBlock
+syn keyword keepalivedFILE_CHECKDefinition                     FILE_CHECK contained containedin=keepalivedFILE_CHECKBlock
+
+" FILE_CHECK
+syn keyword keepalivedFILE_CHECKKeyword                          track_file  contained
+syn keyword keepalivedFILE_CHECKKeyword                              weight  contained
+highlight link keepalivedFILE_CHECKDefinition Identifier
+highlight link keepalivedFILE_CHECKKeyword Identifier
+
+
+
 syn region keepalivedBFD_CHECKBlock start="\s*BFD_CHECK\ze\s*{" matchgroup=keepalivedDelimiter end="\zs}" contains=keepalivedDelimiter,keepalivedBFD_CHECKKeyword,keepalivedBFD_CHECKDefinition,keepalivedOperator,keepalivedComment,keepalivedNumber,keepalivedString,keepalivedBoolean,ipaddress,ipaddr_cidr,keepalivedGenericBlock contained containedin=keepalivedreal_serverBlock
 syn keyword keepalivedBFD_CHECKDefinition                      BFD_CHECK contained containedin=keepalivedBFD_CHECKBlock
 
@@ -531,7 +565,7 @@ syn keyword keepalivedCommonCheckerKeyword                          retry  conta
 syn keyword keepalivedCommonCheckerKeyword                         warmup  contained
 highlight link keepalivedCommonCheckerKeyword Identifier
 
-syn region keepalivedGenericBlock matchgroup=keepalivedDelimiter start="\(^\s*\(SSL\|garp_group\|global_defs\|static_ipaddress\|static_routes\|track_group\|virtual_server\|real_server\|vrrp_instance\|authentication\|vrrp_script\|vrrp_sync_group\|vrrp_track_file\|vrrp_track_process\|MISC_CHECK\|SMTP_CHECK\|host\|TCP_CHECK\|HTTP_GET\|SSL_GET\|url\|DNS_CHECK\|BFD_CHECK\)\(\s\+[a-zA-Z0-9_.:]\+\)\?\(\s\+\w\+\)\?\s*\)\@<!{" end="}" transparent
+syn region keepalivedGenericBlock matchgroup=keepalivedDelimiter start="\(^\s*\(SSL\|garp_group\|global_defs\|static_ipaddress\|static_routes\|track_group\|virtual_server\|real_server\|vrrp_instance\|authentication\|vrrp_script\|vrrp_sync_group\|vrrp_track_process\|MISC_CHECK\|SMTP_CHECK\|host\|TCP_CHECK\|PING_CHECK\|UDP_CHECK\|HTTP_GET\|SSL_GET\|url\|DNS_CHECK\|FILE_CHECK\|BFD_CHECK\)\(\s\+[a-zA-Z0-9_.:]\+\)\?\(\s\+\w\+\)\?\s*\)\@<!{" end="}" transparent
 
 
 " highlight
