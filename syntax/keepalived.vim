@@ -1,7 +1,7 @@
 " Vim syntax file
 " Language:     keepalived config http://www.keepalived.org/
 " URL:          https://github.com/shadowwa/keepalived-syntax.vim
-" Version:      2.2.8
+" Version:      2.3.0
 " Author:       Akira Maeda <glidenote@gmail.com>
 " Maintainer:   Shad
 
@@ -104,6 +104,7 @@ syn keyword keepalivedglobal_defsKeyword               checker_rlimit_rttime  co
 syn keyword keepalivedglobal_defsKeyword                 checker_rt_priority  contained
 syn keyword keepalivedglobal_defsKeyword                     config_save_dir  contained
 syn keyword keepalivedglobal_defsKeyword                   data_use_instance  contained
+syn keyword keepalivedglobal_defsKeyword              dbus_no_interface_name  contained
 syn keyword keepalivedglobal_defsKeyword                   dbus_service_name  contained
 syn keyword keepalivedglobal_defsKeyword                   default_interface  contained
 syn keyword keepalivedglobal_defsKeyword                  disable_local_igmp  contained
@@ -168,11 +169,14 @@ syn keyword keepalivedglobal_defsKeyword                     smtp_alert_vrrp  co
 syn keyword keepalivedglobal_defsKeyword                smtp_connect_timeout  contained
 syn keyword keepalivedglobal_defsKeyword                      smtp_helo_name  contained
 syn keyword keepalivedglobal_defsKeyword                         smtp_server  contained
+syn keyword keepalivedglobal_defsKeyword       snmp_rs_stats_update_interval  contained
 syn keyword keepalivedglobal_defsKeyword                         snmp_socket  contained
+syn keyword keepalivedglobal_defsKeyword       snmp_vs_stats_update_interval  contained
 syn keyword keepalivedglobal_defsKeyword                      startup_script  contained
 syn keyword keepalivedglobal_defsKeyword              startup_script_timeout  contained
 syn keyword keepalivedglobal_defsKeyword                tmp_config_directory  contained
 syn keyword keepalivedglobal_defsKeyword                               umask  contained
+syn keyword keepalivedglobal_defsKeyword                   use_symlink_paths  contained
 syn keyword keepalivedglobal_defsKeyword                   v3_checksum_as_v2  contained
 syn keyword keepalivedglobal_defsKeyword                    vmac_addr_prefix  contained
 syn keyword keepalivedglobal_defsKeyword                         vmac_prefix  contained
