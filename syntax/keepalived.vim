@@ -324,16 +324,11 @@ hi link keepalivedDelimiter           Delimiter
 hi link keepalivedOperator            Operator
 hi link keepalivedComment             Comment
 hi link keepalivedNumber              Number
-hi link keepalivedVariable            PreProc
-hi link keepalivedBlock               Normal
 hi link keepalivedString              String
 hi link keepalivedBoolean             Boolean
 hi link keepalivedLvsSched            Constant
 hi link keepalivedStatus              Constant
 hi link keepalivedProto               Constant
 hi link keepalivedMethod              Constant
-hi link keepalivedDefinitionBlock     Statement
-hi link keepalivedDefinitionImportant Type
-hi link keepalivedDefinition          Identifier
 
 let b:current_syntax = "keepalived"
