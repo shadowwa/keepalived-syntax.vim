@@ -1,7 +1,7 @@
 " Vim syntax file
 " Language:     keepalived config http://www.keepalived.org/
 " URL:          https://github.com/shadowwa/keepalived-syntax.vim
-" Version:      1.2.20
+" Version:      1.2.21
 " Author:       Akira Maeda <glidenote@gmail.com>
 " Maintainer:   Shad
 
@@ -70,6 +70,18 @@ highlight link keepalivedSSLDefinition  Statement
 highlight link keepalivedSSLKeyword       Type
 
 
+syn region keepalivedgarp_groupBlock start="\s*garp_group\ze\s*{" matchgroup=keepalivedDelimiter end="\zs}" contains=keepalivedDelimiter,keepalivedgarp_groupKeyword,keepalivedgarp_groupDefinition,keepalivedOperator,keepalivedComment,keepalivedNumber,keepalivedString,keepalivedBoolean,ipaddress,ipaddr_cidr,keepalivedGenericBlock
+syn keyword keepalivedgarp_groupDefinition                     garp_group contained containedin=keepalivedgarp_groupBlock
+
+" garp_group
+syn keyword keepalivedgarp_groupKeyword                       garp_interval  contained
+syn keyword keepalivedgarp_groupKeyword                        gna_interval  contained
+syn keyword keepalivedgarp_groupKeyword                           interface  contained
+syn keyword keepalivedgarp_groupKeyword                          interfaces  contained
+highlight link keepalivedgarp_groupDefinition  Statement
+highlight link keepalivedgarp_groupKeyword       Type
+
+
 syn region keepalivedglobal_defsBlock start="\s*global_defs\ze\s*{" matchgroup=keepalivedDelimiter end="\zs}" contains=keepalivedDelimiter,keepalivedglobal_defsKeyword,keepalivedglobal_defsDefinition,keepalivedOperator,keepalivedComment,keepalivedNumber,keepalivedString,keepalivedBoolean,ipaddress,ipaddr_cidr,keepalivedGenericBlock
 syn keyword keepalivedglobal_defsDefinition                    global_defs contained containedin=keepalivedglobal_defsBlock
 
@@ -91,12 +103,14 @@ syn keyword keepalivedglobal_defsKeyword                      smtp_helo_name  co
 syn keyword keepalivedglobal_defsKeyword                         smtp_server  contained
 syn keyword keepalivedglobal_defsKeyword                         snmp_socket  contained
 syn keyword keepalivedglobal_defsKeyword              vrrp_check_unicast_src  contained
+syn keyword keepalivedglobal_defsKeyword                  vrrp_garp_interval  contained
 syn keyword keepalivedglobal_defsKeyword          vrrp_garp_lower_prio_delay  contained
 syn keyword keepalivedglobal_defsKeyword         vrrp_garp_lower_prio_repeat  contained
 syn keyword keepalivedglobal_defsKeyword              vrrp_garp_master_delay  contained
 syn keyword keepalivedglobal_defsKeyword            vrrp_garp_master_refresh  contained
 syn keyword keepalivedglobal_defsKeyword     vrrp_garp_master_refresh_repeat  contained
 syn keyword keepalivedglobal_defsKeyword             vrrp_garp_master_repeat  contained
+syn keyword keepalivedglobal_defsKeyword                   vrrp_gna_interval  contained
 syn keyword keepalivedglobal_defsKeyword                         vrrp_ipsets  contained
 syn keyword keepalivedglobal_defsKeyword                       vrrp_iptables  contained
 syn keyword keepalivedglobal_defsKeyword           vrrp_lower_prio_no_advert  contained
@@ -355,7 +369,7 @@ syn keyword keepalivedCommonCheckerKeyword                connect_timeout  conta
 syn keyword keepalivedCommonCheckerKeyword                         fwmark  contained
 highlight link keepalivedCommonCheckerKeyword Identifier
 
-syn region keepalivedGenericBlock matchgroup=keepalivedDelimiter start="\(^\s*\(SSL\|global_defs\|static_ipaddress\|static_routes\|virtual_server\|real_server\|vrrp_instance\|authentication\|vrrp_script\|vrrp_sync_group\|MISC_CHECK\|SMTP_CHECK\|host\|TCP_CHECK\|HTTP_GET\|SSL_GET\|url\|SSL_GET\|url\)\(\s\+[a-zA-Z0-9_.:]\+\)\?\(\s\+\w\+\)\?\s*\)\@<!{" end="}" transparent
+syn region keepalivedGenericBlock matchgroup=keepalivedDelimiter start="\(^\s*\(SSL\|garp_group\|global_defs\|static_ipaddress\|static_routes\|virtual_server\|real_server\|vrrp_instance\|authentication\|vrrp_script\|vrrp_sync_group\|MISC_CHECK\|SMTP_CHECK\|host\|TCP_CHECK\|HTTP_GET\|SSL_GET\|url\|SSL_GET\|url\)\(\s\+[a-zA-Z0-9_.:]\+\)\?\(\s\+\w\+\)\?\s*\)\@<!{" end="}" transparent
 
 
 " highlight
