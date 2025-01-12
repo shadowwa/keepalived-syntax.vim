@@ -1,7 +1,7 @@
 " Vim syntax file
 " Language:     keepalived config http://www.keepalived.org/
 " URL:          https://github.com/shadowwa/keepalived-syntax.vim
-" Version:      1.2.21
+" Version:      1.2.23
 " Author:       Akira Maeda <glidenote@gmail.com>
 " Maintainer:   Shad
 
@@ -94,6 +94,7 @@ syn keyword keepalivedglobal_defsKeyword                     enable_snmp_rfc  co
 syn keyword keepalivedglobal_defsKeyword                   enable_snmp_rfcv2  contained
 syn keyword keepalivedglobal_defsKeyword                   enable_snmp_rfcv3  contained
 syn keyword keepalivedglobal_defsKeyword                        enable_traps  contained
+syn keyword keepalivedglobal_defsKeyword                           lvs_flush  contained
 syn keyword keepalivedglobal_defsKeyword                     lvs_sync_daemon  contained
 syn keyword keepalivedglobal_defsKeyword                  notification_email  contained
 syn keyword keepalivedglobal_defsKeyword             notification_email_from  contained
@@ -338,28 +339,6 @@ highlight link keepalivedHTTP_GETDefinition Identifier
 highlight link keepalivedHTTP_GETKeyword Identifier
 
 
-syn region keepalivedSSL_GETBlock start="\s*SSL_GET\ze\s*{" matchgroup=keepalivedDelimiter end="\zs}" contains=keepalivedDelimiter,keepalivedSSL_GETKeyword,keepalivedSSL_GETDefinition,keepalivedOperator,keepalivedComment,keepalivedNumber,keepalivedString,keepalivedBoolean,ipaddress,ipaddr_cidr,keepalivedGenericBlock,keepalivedCommonCheckerKeyword contained containedin=keepalivedreal_serverBlock
-syn keyword keepalivedSSL_GETDefinition                        SSL_GET contained containedin=keepalivedSSL_GETBlock
-
-" SSL_GET
-syn keyword keepalivedSSL_GETKeyword                  delay_before_retry  contained
-syn keyword keepalivedSSL_GETKeyword                        nb_get_retry  contained
-
-syn region keepalivedurlBlock start="\s*url\ze\s*{" matchgroup=keepalivedDelimiter end="\zs}" contains=keepalivedDelimiter,keepalivedurlKeyword,keepalivedurlDefinition,keepalivedOperator,keepalivedComment,keepalivedNumber,keepalivedString,keepalivedBoolean,ipaddress,ipaddr_cidr,keepalivedGenericBlock contained containedin=keepalivedSSL_GETBlock
-syn keyword keepalivedurlDefinition                            url contained containedin=keepalivedurlBlock
-
-" url
-syn keyword keepalivedurlKeyword                              digest  contained
-syn keyword keepalivedurlKeyword                                path  contained
-syn keyword keepalivedurlKeyword                         status_code  contained
-highlight link keepalivedurlDefinition Identifier
-highlight link keepalivedurlKeyword Identifier
-
-syn keyword keepalivedSSL_GETKeyword                              warmup  contained
-highlight link keepalivedSSL_GETDefinition Identifier
-highlight link keepalivedSSL_GETKeyword Identifier
-
-
 
 syn keyword keepalivedCommonCheckerKeyword                      bind_port  contained
 syn keyword keepalivedCommonCheckerKeyword                         bindto  contained
@@ -369,7 +348,7 @@ syn keyword keepalivedCommonCheckerKeyword                connect_timeout  conta
 syn keyword keepalivedCommonCheckerKeyword                         fwmark  contained
 highlight link keepalivedCommonCheckerKeyword Identifier
 
-syn region keepalivedGenericBlock matchgroup=keepalivedDelimiter start="\(^\s*\(SSL\|garp_group\|global_defs\|static_ipaddress\|static_routes\|virtual_server\|real_server\|vrrp_instance\|authentication\|vrrp_script\|vrrp_sync_group\|MISC_CHECK\|SMTP_CHECK\|host\|TCP_CHECK\|HTTP_GET\|SSL_GET\|url\|SSL_GET\|url\)\(\s\+[a-zA-Z0-9_.:]\+\)\?\(\s\+\w\+\)\?\s*\)\@<!{" end="}" transparent
+syn region keepalivedGenericBlock matchgroup=keepalivedDelimiter start="\(^\s*\(SSL\|garp_group\|global_defs\|static_ipaddress\|static_routes\|virtual_server\|real_server\|vrrp_instance\|authentication\|vrrp_script\|vrrp_sync_group\|MISC_CHECK\|SMTP_CHECK\|host\|TCP_CHECK\|HTTP_GET\|SSL_GET\|url\)\(\s\+[a-zA-Z0-9_.:]\+\)\?\(\s\+\w\+\)\?\s*\)\@<!{" end="}" transparent
 
 
 " highlight
